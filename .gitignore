@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# .NET build output
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# Frontend dependencies and build output
+src/client/node_modules/
+src/client/dist/
+
+# Local databases and runtime files
+*.db
+*.db-shm
+*.db-wal
+
+# Test and coverage artifacts
+coverage/
+TestResults/

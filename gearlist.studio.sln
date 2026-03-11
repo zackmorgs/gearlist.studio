@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{E6B48023-E680-40DA-9E17-319585C26937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gearlist.Api", "src\server\Gearlist.Api\Gearlist.Api.csproj", "{EAC9E590-D3DE-90B0-06F3-48F434EBB259}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAC9E590-D3DE-90B0-06F3-48F434EBB259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC9E590-D3DE-90B0-06F3-48F434EBB259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC9E590-D3DE-90B0-06F3-48F434EBB259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC9E590-D3DE-90B0-06F3-48F434EBB259}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6B48023-E680-40DA-9E17-319585C26937} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{EAC9E590-D3DE-90B0-06F3-48F434EBB259} = {E6B48023-E680-40DA-9E17-319585C26937}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FE91CCE-CF3E-4CE9-A353-85ADAF65DE90}
+	EndGlobalSection
+EndGlobal

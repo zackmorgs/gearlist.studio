@@ -1,0 +1,35 @@
+{
+  "name": "gearlist-client",
+  "version": "1.0.0",
+  "description": "gearlist.studio SPA frontend",
+  "private": true,
+  "scripts": {
+    "prebuild": "mkdir -p dist/assets",
+    "build:js": "esbuild src/index.jsx --bundle --outfile=dist/assets/app.js --format=esm --sourcemap",
+    "build:css": "sass src/styles/main.scss dist/assets/app.raw.css --no-source-map && postcss dist/assets/app.raw.css -o dist/assets/app.css",
+    "build": "npm run build:js && npm run build:css && cp index.html dist/index.html",
+    "watch:js": "esbuild src/index.jsx --bundle --outfile=dist/assets/app.js --format=esm --sourcemap --watch",
+    "watch:css": "sass --watch src/styles/main.scss:dist/assets/app.raw.css --no-source-map",
+    "watch:postcss": "postcss dist/assets/app.raw.css -o dist/assets/app.css --watch",
+    "dev": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "esbuild",
+    "scss",
+    "postcss"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "esbuild": "^0.27.3",
+    "postcss": "^8.5.8",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.98.0"
+  }
+}
