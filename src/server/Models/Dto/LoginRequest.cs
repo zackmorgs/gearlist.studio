@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Gearlist.Api.Models.Dto;
+namespace Models.Dto;
 
 public record LoginRequest(
     [property: Required, EmailAddress] string Email,

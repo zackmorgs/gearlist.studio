@@ -28,6 +28,9 @@ yarn-error.log*
 # Frontend dependencies and build output
 src/client/node_modules/
 src/client/dist/
+/dist/
+src/server/Host/wwwroot/*
+!src/server/Host/wwwroot/.gitkeep
 
 # Local databases and runtime files
 *.db

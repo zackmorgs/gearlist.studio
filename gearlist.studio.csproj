@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="src/server/Api/Api.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Include="src/client/src/**/*" />
+    <Watch Include="src/client/index.html" />
+    <Watch Include="src/client/package.json" />
+    <Watch Include="src/client/postcss.config.cjs" />
+    <Watch Include="src/server/Api/**/*" />
+    <Watch Include="src/server/Data/**/*" />
+    <Watch Include="src/server/Models/**/*" />
+  </ItemGroup>
+
+  <Target Name="BuildClientAssets" BeforeTargets="Build">
+    <Exec WorkingDirectory="src/client" Command="npm run prebuild:host" />
+    <Exec WorkingDirectory="src/client" Command="npm run build:host" />
+  </Target>
+
+</Project>

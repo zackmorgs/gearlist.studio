@@ -1,4 +1,4 @@
-namespace Gearlist.Api.Models;
+namespace Models;
 
 public class User
 {

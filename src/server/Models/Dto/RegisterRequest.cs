@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Gearlist.Api.Models.Dto;
+namespace Models.Dto;
 
 public record RegisterRequest(
     [property: Required, StringLength(80, MinimumLength = 2)] string DisplayName,

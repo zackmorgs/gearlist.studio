@@ -2,18 +2,18 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BCrypt.Net;
-using Gearlist.Api.Data;
-using Gearlist.Api.Models;
-using Gearlist.Api.Models.Dto;
+using Data;
+using Models;
+using Models.Dto;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection("MongoDb"));
+builder.Services.AddSingleton<Db>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -44,11 +44,8 @@ builder.WebHost.UseKestrel(kestrelOptions =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
-}
+var mongoDb = app.Services.GetRequiredService<Db>();
+await mongoDb.EnsureIndexesAsync();
 
 if (app.Environment.IsDevelopment())
 {
@@ -61,15 +58,9 @@ app.UseAuthorization();
 
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }));
 
-app.MapPost("/api/auth/register", async (RegisterRequest request, AppDbContext db) =>
+app.MapPost("/api/auth/register", async (RegisterRequest request, Db db) =>
 {
     var normalizedEmail = request.Email.Trim().ToLowerInvariant();
-    var exists = await db.Users.AnyAsync(u => u.Email == normalizedEmail);
-
-    if (exists)
-    {
-        return Results.Conflict(new { message = "Email is already in use." });
-    }
 
     var user = new User
     {
@@ -78,8 +69,14 @@ app.MapPost("/api/auth/register", async (RegisterRequest request, AppDbContext d
         PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
     };
 
-    db.Users.Add(user);
-    await db.SaveChangesAsync();
+    try
+    {
+        await db.Users.InsertOneAsync(user);
+    }
+    catch (MongoWriteException ex) when (ex.WriteError?.Code == 11000)
+    {
+        return Results.Conflict(new { message = "Email is already in use." });
+    }
 
     return Results.Created($"/api/users/{user.Id}", new
     {
@@ -89,10 +86,10 @@ app.MapPost("/api/auth/register", async (RegisterRequest request, AppDbContext d
     });
 });
 
-app.MapPost("/api/auth/login", async (LoginRequest request, AppDbContext db, IConfiguration config) =>
+app.MapPost("/api/auth/login", async (LoginRequest request, Db db, IConfiguration config) =>
 {
     var normalizedEmail = request.Email.Trim().ToLowerInvariant();
-    var user = await db.Users.SingleOrDefaultAsync(u => u.Email == normalizedEmail);
+    var user = await db.Users.Find(u => u.Email == normalizedEmail).FirstOrDefaultAsync();
 
     if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
     {
