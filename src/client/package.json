@@ -12,6 +12,8 @@
     "build:js": "esbuild src/index.jsx --bundle --outfile=../../dist/client/assets/app.js --format=esm --sourcemap",
     "build:css": "sass src/styles/main.scss ../../dist/client/assets/app.raw.css --no-source-map && postcss ../../dist/client/assets/app.raw.css -o ../../dist/client/assets/app.css",
     "build": "npm run build:js && npm run build:css && cp index.html ../../dist/client/index.html",
+    "format": "prettier --write \"index.html\" \"src/**/*.{js,jsx,json,scss,css,html}\"",
+    "format:check": "prettier --check \"index.html\" \"src/**/*.{js,jsx,json,scss,css,html}\"",
     "watch:js": "esbuild src/index.jsx --bundle --outfile=../../dist/client/assets/app.js --format=esm --sourcemap --watch",
     "watch:css": "sass --watch src/styles/main.scss:../../dist/client/assets/app.raw.css --no-source-map",
     "watch:postcss": "postcss ../../dist/client/assets/app.raw.css -o ../../dist/client/assets/app.css --watch",
@@ -27,13 +29,15 @@
   "license": "UNLICENSED",
   "dependencies": {
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.27",
     "esbuild": "^0.27.3",
     "postcss": "^8.5.8",
     "postcss-cli": "^11.0.1",
+    "prettier": "^3.6.2",
     "sass": "^1.98.0"
   }
 }
