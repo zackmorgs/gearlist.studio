@@ -100,9 +100,15 @@ const plugin_example_list = [
 export default function Home() {
     return (
         <>
-            <header className="panel">
+            <header className="panel text-center">
                 <h1>Discover the Gear Behind the Sound</h1>
                 <p>The ultimate database of guitars, amps, pedals, plugins, and studio equipment used by musicians around the world.</p>
+                <input id="search_input" type="text" placeholder="Search for artists, instruments, amps, pedals, and plugins..." className="input" />
+                <br />
+                {/* <Link id="search_Link" className="btn">
+                    <span>Search</span>
+                    <img src="/assets/svg/icon-search.svg" alt="Search Icon" className="btn-icon" />
+                </Link> */}
             </header>
 
             <section id="cta_artists" className="panel text-center">
