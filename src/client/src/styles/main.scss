@@ -369,3 +369,48 @@ header {
   margin: 1rem;
   font-size: 0.75rem;
 }
+
+@media (min-width: 768px) {
+  #nav_main {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  #nav_logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-list {
+    position: static;
+    height: auto;
+    overflow: visible;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    .nav-item {
+      display: block;
+    }
+  }
+
+  .nav-link {
+    padding: 1rem;
+    margin: 0 0.25rem;
+  }
+
+  #nav_toggle {
+    display: none;
+  }
+
+  .artist-list,
+  .instrument-list,
+  .amp-list,
+  .pedal-list,
+  .plugin-list {
+    max-width: 32rem;
+    margin: 1rem auto;
+  }
+}
