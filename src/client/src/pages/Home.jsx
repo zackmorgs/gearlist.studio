@@ -102,12 +102,13 @@ export default function Home() {
         <>
             <header className="panel">
                 <h1>Discover the Gear Behind the Sound</h1>
-                <p>This website aims to be the ultimate database of guitars, amps, pedals, plugins, and studio equipment used by musicians around the world.</p>
+                <p>The ultimate database of guitars, amps, pedals, plugins, and studio equipment used by musicians around the world.</p>
             </header>
 
             <section id="cta_artists" className="panel text-center">
-                <img src="/assets/svg/icon-artist.svg" alt="Artist Icon" className="section-icon" />
+                <svg className="section-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M740-560h140v80h-80v220q0 42-29 71t-71 29q-42 0-71-29t-29-71q0-42 29-71t71-29q8 0 18 1.5t22 6.5v-208ZM120-160v-112q0-35 17.5-63t46.5-43q62-31 126-46.5T440-440q42 0 83.5 6.5T607-414q-20 12-36 29t-28 37q-26-6-51.5-9t-51.5-3q-57 0-112 14t-108 40q-9 5-14.5 14t-5.5 20v32h321q2 20 9.5 40t20.5 40H120Zm207-367q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm169.5-56.5Q520-607 520-640t-23.5-56.5Q473-720 440-720t-56.5 23.5Q360-673 360-640t23.5 56.5Q407-560 440-560t56.5-23.5ZM440-640Zm0 400Z" /></svg>
                 <h2>Artists</h2>
+                <hr className="rule-sm" />
                 <Link to="/artists" className="btn">
                     <span>Explore Artists</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
@@ -125,8 +126,10 @@ export default function Home() {
             </section>
 
             <section id="cta_instruments" className="panel text-center">
-                <img alt="Instrument Icon" className="section-icon" src="/assets/svg/icon-piano.svg"></img>
+                <svg className="section-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h130v-180h-10q-17 0-28.5-11.5T280-420v-340h-80v560Zm430 0h130v-560h-80v340q0 17-11.5 28.5T640-380h-10v180Zm-240 0h180v-180h-10q-17 0-28.5-11.5T520-420v-340h-80v340q0 17-11.5 28.5T400-380h-10v180Z" /></svg>
                 <h2>Instruments</h2>
+                <hr className="rule-sm" />
+
                 <Link to="/instruments" className="btn"><span>Explore Instruments</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
                 <p>See a database of guitars, bass, keyboards and other instruments that artists use.</p>
                 <ul className="instrument-list">
@@ -145,8 +148,10 @@ export default function Home() {
 
 
             <section id="cta_amps" className="panel text-center">
-                <img alt="Amp Icon" className="section-icon" src="/assets/svg/icon-amp.svg"></img>
+                <svg className="section-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-360h640v-320H160v320Zm40 160q-17 0-28.5-11.5T160-240v-40q-33 0-56.5-23.5T80-360v-320q0-33 23.5-56.5T160-760h640q33 0 56.5 23.5T880-680v320q0 33-23.5 56.5T800-280v40q0 17-11.5 28.5T760-200q-17 0-28.5-11.5T720-240v-40H240v40q0 17-11.5 28.5T200-200Zm-40-160v-320 320Zm556.5-103.5Q740-487 740-520t-23.5-56.5Q693-600 660-600t-56.5 23.5Q580-553 580-520t23.5 56.5Q627-440 660-440t56.5-23.5ZM240-440h280v-160H240v160Z" /></svg>
                 <h2>Amps</h2>
+                <hr className="rule-sm" />
+
                 <Link to="/amps" className="btn"><span>Explore Amps</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
 
                 <ul className="amp-list">
@@ -165,8 +170,10 @@ export default function Home() {
 
 
             <section id="cta_pedals" className="panel text-center">
-                <img alt="Pedal Icon" className="section-icon" src="/assets/svg/icon-pedal.svg"></img>
+                <svg className="section-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M320-120q-33 0-56.5-23.5T240-200v-560q0-33 23.5-56.5T320-840h320q33 0 56.5 23.5T720-760v560q0 33-23.5 56.5T640-120H320Zm320-80v-560H320v560h320ZM508.5-651.5Q520-663 520-680t-11.5-28.5Q497-720 480-720t-28.5 11.5Q440-697 440-680t11.5 28.5Q463-640 480-640t28.5-11.5ZM0-360v-240h80v240H0Zm120 80v-400h80v400h-80Zm760-80v-240h80v240h-80Zm-120 80v-400h80v400h-80Zm-440 80v-560 560Z" /></svg>
                 <h2>Pedals</h2>
+                <hr className="rule-sm" />
+
                 <Link to="/pedals" className="btn">
                     <span>Explore Pedals</span>
                     <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
@@ -186,8 +193,10 @@ export default function Home() {
             </section>
 
             <section id="cta_plugins" className="panel text-center">
-                <img alt="Plugin Icon" className="section-icon" src="/assets/svg/icon-puzzle.svg"></img>
+                <svg className="section-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M352-120H200q-33 0-56.5-23.5T120-200v-152q48 0 84-30.5t36-77.5q0-47-36-77.5T120-568v-152q0-33 23.5-56.5T200-800h160q0-42 29-71t71-29q42 0 71 29t29 71h160q33 0 56.5 23.5T800-720v160q42 0 71 29t29 71q0 42-29 71t-71 29v160q0 33-23.5 56.5T720-120H568q0-50-31.5-85T460-240q-45 0-76.5 35T352-120Zm-152-80h85q24-66 77-93t98-27q45 0 98 27t77 93h85v-240h80q8 0 14-6t6-14q0-8-6-14t-14-6h-80v-240H480v-80q0-8-6-14t-14-6q-8 0-14 6t-6 14v80H200v88q54 20 87 67t33 105q0 57-33 104t-87 68v88Zm260-260Z" /></svg>
                 <h2>Plugins</h2>
+                <hr className="rule-sm" />
+
                 <Link to="/plugins" className="btn">
                     <span>Explore Plugins</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
