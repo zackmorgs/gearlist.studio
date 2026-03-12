@@ -7,8 +7,10 @@ export default function Footer() {
 
     return (
         <footer id="footer_main">
-            <p>&copy;{todaysYear} gearlist.studio.</p>
-            <p><small>All rights reserved.</small></p>
+            <div className="container">
+                <p>&copy;{todaysYear} gearlist.studio.</p>
+                <p><small>All rights reserved.</small></p>
+            </div>
         </footer>
     );
 }

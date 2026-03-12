@@ -16,7 +16,9 @@ export default function Nav() {
     return (
         <nav id="nav_main">
             <div className="nav-bar">
-                <h1 id="nav_logo"><span id="gearlist">gearlist</span><span>.</span><span id="studio">studio</span></h1>
+                <Link to="/" id="nav_logo_link" onClick={closeMenu}>
+                    <h1 id="nav_logo"><span id="gearlist">gearlist</span><span>.</span><span id="studio">studio</span></h1>
+                </Link>
                 <button
                     id="nav_toggle"
                     aria-label="Toggle navigation menu"

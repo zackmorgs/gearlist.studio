@@ -76,7 +76,25 @@ const pedal_example_list = [
         picture: "/assets/img/strymon-timeline-xl.webp"
     }
 ];
+const plugin_example_list = [
+    {
+        name: "Pro-Q 3",
+        picture: "/assets/img/fabfilter-pro-q-3-equalizer-plugin-m.webp"
+    },
+    {
+        name: "Neural Amp Modeler",
+        picture: "/assets/img/neural-amp-modeler-xl.webp"
+    },
+    {
+        name: "Universal Audio UAD 1176 Classic FET Compressor",
+        picture: "/assets/img/universal-audio-uad-1176-classic-fet-compressor-xl.webp"
+    },
 
+    {
+        name: "Waves SSL E-Channel",
+        picture: "/assets/img/waves-ssl-e-channel-m.webp"
+    }
+];
 
 
 export default function Home() {
@@ -149,7 +167,10 @@ export default function Home() {
             <section id="cta_pedals" className="panel text-center">
                 <img alt="Pedal Icon" className="section-icon" src="/assets/svg/icon-pedal.svg"></img>
                 <h2>Pedals</h2>
-                <Link to="/pedals" className="btn"><span>Explore Pedals</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
+                <Link to="/pedals" className="btn">
+                    <span>Explore Pedals</span>
+                    <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
+                </Link>
                 <p>See a database of guitar and bass pedals that artists use.</p>
                 <ul className="pedal-list">
                     {pedal_example_list.map((pedal, index) => (
@@ -167,8 +188,21 @@ export default function Home() {
             <section id="cta_plugins" className="panel text-center">
                 <img alt="Plugin Icon" className="section-icon" src="/assets/svg/icon-puzzle.svg"></img>
                 <h2>Plugins</h2>
-                <Link to="/plugins" className="btn">Explore Plugins</Link>
+                <Link to="/plugins" className="btn">
+                    <span>Explore Plugins</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
+                </Link>
                 <p>See a database of VST/VSTi, CLAP, and RTAS plugins that artists use.</p>
+                <ul className="plugin-list">
+                    {plugin_example_list.map((plugin, index) => (
+                        <li key={index} className="plugin-card">
+                            <img className="plugin-photo" src={plugin.picture
+                            } alt={plugin.name} />
+                            <div className="overlay">
+                                <h3>{plugin.name}</h3>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </section>
         </>
     );

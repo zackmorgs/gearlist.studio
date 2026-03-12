@@ -43,6 +43,10 @@ body {
   background: $darkGrey;
 }
 
+#nav_logo_link {
+  text-decoration: none;
+}
+
 #nav_logo {
   font-size: 1rem;
   margin: 0;
@@ -184,7 +188,8 @@ header {
 .artist-list,
 .instrument-list,
 .amp-list,
-.pedal-list {
+.pedal-list,
+.plugin-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -200,7 +205,8 @@ header {
 .artist-card,
 .instrument-card,
 .amp-card,
-.pedal-card {
+.pedal-card,
+.plugin-card {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
@@ -239,7 +245,8 @@ header {
 .artist-photo,
 .instrument-photo,
 .amp-photo,
-.pedal-photo {
+.pedal-photo,
+.plugin-photo {
   position: relative;
   width: 100%;
   height: 100%;
@@ -255,4 +262,5 @@ header {
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
   margin: 1rem;
+  font-size: 0.75rem;
 }
