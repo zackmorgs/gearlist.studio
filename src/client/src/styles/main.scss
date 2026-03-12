@@ -51,6 +51,14 @@ body {
   font-size: 1rem;
   margin: 0;
   font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+}
+
+#nav_logo_image {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.25rem;
 }
 
 #gearlist {
@@ -167,6 +175,7 @@ header {
   color: #f1f1f1;
   text-decoration: none;
   border-radius: 0.5rem;
+  box-shadow: 4px 4px 1rem #00000096;
 }
 
 .btn-icon {

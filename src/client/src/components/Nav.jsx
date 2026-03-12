@@ -17,7 +17,10 @@ export default function Nav() {
         <nav id="nav_main">
             <div className="nav-bar">
                 <Link to="/" id="nav_logo_link" onClick={closeMenu}>
-                    <h1 id="nav_logo"><span id="gearlist">gearlist</span><span>.</span><span id="studio">studio</span></h1>
+                    <h1 id="nav_logo">
+                        {/* <img src="/assets/svg/icon-database.svg" alt="gearlist.studio logo" id="nav_logo_image" /> */}
+                        <span id="gearlist">gearlist</span><span>.</span><span id="studio">studio</span>
+                    </h1>
                 </Link>
                 <button
                     id="nav_toggle"
