@@ -45,7 +45,7 @@ export default function Nav() {
                 {nav_links.map((link, index) => (
                     <li key={index} className="nav-item">
                         <Link to={link.path} className="nav-link" onClick={closeMenu}>
-                            <u>{link.name}r</u>
+                            <u>{link.name}</u>
                         </Link>
                     </li>
                 ))}
