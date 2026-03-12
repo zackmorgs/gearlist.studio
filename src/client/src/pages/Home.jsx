@@ -116,10 +116,12 @@ export default function Home() {
                 <ul className="artist-list">
                     {artist_example_list.map((artist, index) => (
                         <li key={index} className="artist-card">
-                            <img className="artist-photo" src={artist.picture} alt={artist.name} />
-                            <div className="overlay">
-                                <h3>{artist.name}</h3>
-                            </div>
+                            <Link to={`/artists/${artist.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                                <img className="artist-photo" src={artist.picture} alt={artist.name} />
+                                <div className="overlay">
+                                    <h3>{artist.name}</h3>
+                                </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -135,11 +137,13 @@ export default function Home() {
                 <ul className="instrument-list">
                     {instrument_example_list.map((instrument, index) => (
                         <li key={index} className="instrument-card">
-                            <img className="instrument-photo" src={instrument
-                                .picture} alt={instrument.name} />
-                            <div className="overlay">
-                                <h3>{instrument.name}</h3>
-                            </div>
+                            <Link to={`/instruments/${instrument.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                                <img className="instrument-photo" src={instrument
+                                    .picture} alt={instrument.name} />
+                                <div className="overlay">
+                                    <h3>{instrument.name}</h3>
+                                </div>
+                            </Link>
                         </li>
                     ))}
 
@@ -157,11 +161,14 @@ export default function Home() {
                 <ul className="amp-list">
                     {amp_example_list.map((amp, index) => (
                         <li key={index} className="amp-card">
-                            <img className="amp-photo" src={amp.picture
-                            } alt={amp.name} />
-                            <div className="overlay">
-                                <h3>{amp.name}</h3>
-                            </div>
+                            <Link to={`/amps/${amp.name.toLowerCase().replace(/\s+/g, '-')}`}>
+
+                                <img className="amp-photo" src={amp
+                                    .picture} alt={amp.name} />
+                                <div className="overlay">
+                                    <h3>{amp.name}</h3>
+                                </div>
+                            </Link>
                         </li>
                     ))}
 
@@ -182,11 +189,13 @@ export default function Home() {
                 <ul className="pedal-list">
                     {pedal_example_list.map((pedal, index) => (
                         <li key={index} className="pedal-card">
-                            <img className="pedal-photo" src={pedal.picture
-                            } alt={pedal.name} />
-                            <div className="overlay">
-                                <h3>{pedal.name}</h3>
-                            </div>
+                            <Link to={`/pedals/${pedal.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                                <img className="pedal-photo" src={pedal.picture
+                                } alt={pedal.name} />
+                                <div className="overlay">
+                                    <h3>{pedal.name}</h3>
+                                </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -204,11 +213,13 @@ export default function Home() {
                 <ul className="plugin-list">
                     {plugin_example_list.map((plugin, index) => (
                         <li key={index} className="plugin-card">
-                            <img className="plugin-photo" src={plugin.picture
-                            } alt={plugin.name} />
-                            <div className="overlay">
-                                <h3>{plugin.name}</h3>
-                            </div>
+                            <Link to={`/plugins/${plugin.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                                <img className="plugin-photo" src={plugin.picture
+                                } alt={plugin.name} />
+                                <div className="overlay">
+                                    <h3>{plugin.name}</h3>
+                                </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>

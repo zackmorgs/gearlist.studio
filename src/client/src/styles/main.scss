@@ -4,6 +4,7 @@ $earthRed: #bf5025;
 $brandBlue: #36b8ad;
 $brandBlueAccent: #83e3db;
 $highlightGreen: #3fb83d;
+$brandYellow: #afaf00;
 $pudding: #bdcd6a;
 $cream: #f1f9e9;
 $purple: #8062cb;
@@ -53,6 +54,11 @@ body {
   font-weight: 400;
   display: inline-flex;
   align-items: center;
+  transition: transform 0.1s ease;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.85);
+  }
 }
 
 #nav_logo_image {
@@ -63,6 +69,9 @@ body {
 
 #gearlist {
   color: $brandBlue;
+}
+#dot {
+  color: $brandYellow;
 }
 
 #studio {
@@ -202,6 +211,7 @@ header {
   width: 3rem;
   height: 3rem;
   margin-bottom: 0.25rem;
+  filter: drop-shadow(2px 4px 16px black);
 }
 
 .artist-list,
