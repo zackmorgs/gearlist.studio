@@ -330,6 +330,20 @@ header {
   padding-left: 1.25rem;
 }
 
+.artist-grid {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.artist-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 #footer_main {
   text-align: center;
   padding: 1rem;

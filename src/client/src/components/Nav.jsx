@@ -2,6 +2,14 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+const nav_links = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Artists", path: "/artists" },
+    { name: "Equipment", path: "/equipment" },
+    { name: "Contact", path: "/contact" },
+]
+
 export default function Nav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -34,18 +42,13 @@ export default function Nav() {
                 </button>
             </div>
             <ul className={`nav-list ${isMenuOpen ? "active" : ""}`}>
-                <li>
-                    <Link className="nav-link" to="/" onClick={closeMenu}><u>Home</u></Link>
-                </li>
-                <li>
-                    <Link className="nav-link" to="/about" onClick={closeMenu}><u>About</u></Link>
-                </li>
-                <li>
-                    <Link className="nav-link" to="/artists" onClick={closeMenu}><u>Artists</u></Link>
-                </li>
-                <li>
-                    <Link className="nav-link" to="/contact" onClick={closeMenu}><u>Contact</u></Link>
-                </li>
+                {nav_links.map((link, index) => (
+                    <li key={index} className="nav-item">
+                        <Link to={link.path} className="nav-link" onClick={closeMenu}>
+                            <u>{link.name}r</u>
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </nav>
     );
