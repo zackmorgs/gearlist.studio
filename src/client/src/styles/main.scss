@@ -120,12 +120,11 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  // gap: 1rem;
   margin: 0;
   padding: 0 0 1rem 0;
-  background: $darkGrey;
-  box-shadow: 0px 9px 1rem 16px rgb(0 0 0 / 32%);
-
+  background: #080603c4;
+  box-shadow: 0px 9px 1rem 16px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(0.25rem);
   li {
     list-style-type: none;
     margin: 0;
@@ -144,7 +143,7 @@ body {
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.3s ease;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
   display: block;
   background: linear-gradient(74deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05));
   &:hover {
@@ -226,13 +225,18 @@ header {
 
 .btn {
   padding: 1rem;
-  background: black;
+  background: linear-gradient(32deg, #000000, #1a1a1a, #040404);
   display: inline-flex;
   align-items: center;
   color: #f1f1f1;
   text-decoration: none;
   border-radius: 0.5rem;
-  box-shadow: 4px 4px 1rem #00000096;
+  box-shadow:
+    4px 4px 1rem rgba(0, 0, 0, 0.5882352941),
+    inset 0px 0px 1rem rgba(0, 0, 0, 0.5);
+  /* color: #111; */
+  font-weight: 600;
+  text-shadow: 4px 4px 0.25rem rgba(0, 0, 0, 1);
 }
 
 .btn-icon {
@@ -320,6 +324,10 @@ header {
   height: 100%;
   /* border-radius: 1rem; */
   z-index: 25;
+}
+
+.list-text {
+  padding-left: 1.25rem;
 }
 
 #footer_main {
