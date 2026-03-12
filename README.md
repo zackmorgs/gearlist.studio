@@ -17,7 +17,25 @@ A website for musicians to find the gear that their favorite musicians use.
             - Autoprefixer
 
 ## `dev` the project
-`dotnet watch run` from './'
+Run both watchers from project root:
+
+```bash
+npm run dev
+# or
+bash ./scripts/dev.sh
+```
+
+This starts:
+- client watch pipeline writing to `src/server/Host/wwwroot`
+- `dotnet watch run` for backend + browser refresh
+
+If file watching is unreliable on your setup (VM/container/network mounts), run with polling:
+
+```bash
+npm run dev:poll
+# or
+DOTNET_USE_POLLING_FILE_WATCHER=1 bash ./scripts/dev.sh
+```
 
 ## Bundle output
 

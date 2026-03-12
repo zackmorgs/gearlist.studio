@@ -1,0 +1,8 @@
+{
+  "name": "gearlist-studio",
+  "private": true,
+  "scripts": {
+    "dev": "bash ./scripts/dev.sh",
+    "dev:poll": "DOTNET_USE_POLLING_FILE_WATCHER=1 bash ./scripts/dev.sh"
+  }
+}
