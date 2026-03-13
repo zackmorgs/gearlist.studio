@@ -6,6 +6,7 @@ const nav_links = [
     { name: "About", path: "/about" },
     { name: "Artists", path: "/artists" },
     { name: "Equipment", path: "/equipment" },
+    { name: "Genres", path: "/genres" },
     { name: "Contact", path: "/contact" },
 ]
 
