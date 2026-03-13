@@ -1,11 +1,10 @@
 import React from "react";
 
-
-export default function Contact() {
+export default function Equipment() {
     return (
         <>
             <header className="panel text-center">
-                <h1>Contact</h1>
+                <h1>Equipment</h1>
             </header>
         </>
     );

@@ -8,7 +8,7 @@ import Home from './../pages/Home';
 import About from './../pages/About';
 import Contact from './../pages/Contact';
 import Artists from './../pages/Artists';
-import Gear from './../pages/Gear';
+import Equipment from "../pages/Equipment";
 
 export function App() {
   return (
@@ -20,7 +20,7 @@ export function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/artists/" element={<Artists />} />
-          <Route path="/gear/" element={<Gear />} />
+          <Route path="/equipment/" element={<Equipment />} />
         </Routes>
       </main>
       <Footer />

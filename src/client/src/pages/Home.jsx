@@ -123,7 +123,7 @@ export default function Home() {
                 <Link to="/artists" className="btn">
                     <span>Explore Artists</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
-                <p>Explore the gear via our curated artist profiles.</p>
+                <p class="subtitle">Explore the gear via our curated artist profiles.</p>
                 <ul className="artist-list">
                     {artist_example_list.map((artist, index) => (
                         <li key={index} className="artist-card">
@@ -144,7 +144,7 @@ export default function Home() {
                 <hr className="rule-sm" />
 
                 <Link to="/instruments" className="btn"><span>Explore Instruments</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
-                <p>See a database of guitars, bass, keyboards and other instruments that artists use.</p>
+                <p className="subtitle">See a database of guitars, bass, keyboards and other instruments that artists use.</p>
                 <ul className="instrument-list">
                     {instrument_example_list.map((instrument, index) => (
                         <li key={index} className="instrument-card">
@@ -168,7 +168,7 @@ export default function Home() {
                 <hr className="rule-sm" />
 
                 <Link to="/amps" className="btn"><span>Explore Amps</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
-
+                <p className="subtitle">See a database of amplifiers that artists use.</p>
                 <ul className="amp-list">
                     {amp_example_list.map((amp, index) => (
                         <li key={index} className="amp-card">
@@ -196,7 +196,7 @@ export default function Home() {
                     <span>Explore Pedals</span>
                     <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
-                <p>See a database of guitar and bass pedals that artists use.</p>
+                <p className="subtitle">See a database of guitar and bass pedals that artists use.</p>
                 <ul className="pedal-list">
                     {pedal_example_list.map((pedal, index) => (
                         <li key={index} className="pedal-card">

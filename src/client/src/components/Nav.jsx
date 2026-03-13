@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const nav_links = [
-    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Artists", path: "/artists" },
     { name: "Equipment", path: "/equipment" },
