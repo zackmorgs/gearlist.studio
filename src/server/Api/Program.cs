@@ -14,6 +14,7 @@ using Data.BandRoles;
 using Data.Seeding;
 using Microsoft.Extensions.Options;
 using Data.Seed;
+using Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,21 +37,23 @@ builder.Services.AddSingleton(sp =>
 builder.Services.AddSingleton<IBandRoleRepository, BandRoleRepository>();
 builder.Services.AddHostedService<BandRoleSeedHostedService>();
 
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddScoped<AuthService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        var jwtConfig = builder.Configuration.GetSection("Jwt");
-        var key = jwtConfig["Key"] ?? throw new InvalidOperationException("Jwt:Key is not configured.");
-
+        var jwt = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()!;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
-            ValidIssuer = jwtConfig["Issuer"],
-            ValidAudience = jwtConfig["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwt.Issuer,
+            ValidAudience = jwt.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwt.Secret))
         };
     });
 
@@ -78,9 +81,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapAuthEndpoints();
 
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }));
-
 
 
 app.MapPost("/api/auth/register", async (RegisterRequest request, Db db) =>
