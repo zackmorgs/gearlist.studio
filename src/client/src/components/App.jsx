@@ -11,6 +11,9 @@ import Artists from './../pages/Artists';
 import Genres from './../pages/Genres';
 import Equipment from "../pages/Equipment";
 
+import Login from "../pages/auth/Login";
+import Profile from "../pages/auth/Profile";
+
 export function App() {
   return (
     <>
@@ -23,6 +26,9 @@ export function App() {
           <Route path="/artists/" element={<Artists />} />
           <Route path="/genres/" element={<Genres />} />
           <Route path="/equipment/" element={<Equipment />} />
+          <Route path="/login/" element={<Login />} />
+          <Route path="/profile/" element={<Profile />} />
+
         </Routes>
       </main>
       <Footer />
