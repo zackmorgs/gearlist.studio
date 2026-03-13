@@ -18,6 +18,14 @@
   <ItemGroup>
     <Compile Include="../Models/**/*.cs" Link="Models/%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Include="../Data/**/*.cs" Link="Data/%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Include="../Services/**/*.cs" Link="Services/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="../Data/Seed/*.seed.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Seed/%(Filename)%(Extension)</Link>
+    </Content>
   </ItemGroup>
 
 </Project>

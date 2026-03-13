@@ -1,0 +1,35 @@
+[
+  { "displayName": "Producer", "description": "Produces and arranges music." },
+  {
+    "displayName": "Guitarist",
+    "description": "Plays electric or acoustic guitar."
+  },
+  { "displayName": "Drummer", "description": "Plays drum kit and percussion." },
+  { "displayName": "Bassist", "description": "Plays bass guitar." },
+  {
+    "displayName": "Rapper",
+    "description": "Performs rap vocals and lyric delivery."
+  },
+  {
+    "displayName": "Composer",
+    "description": "Writes and structures musical works."
+  },
+  {
+    "displayName": "Keyboardist",
+    "description": "Plays keys, synths, or piano."
+  },
+  {
+    "displayName": "Singer",
+    "description": "Performs lead or backing vocals."
+  },
+  { "displayName": "Ukulele Player", "description": "Plays ukulele." },
+  {
+    "displayName": "Audio Engineer",
+    "description": "Handles recording, mixing, and sound setup."
+  },
+  { "displayName": "Saxophonist", "description": "Plays saxophone." },
+  { "displayName": "Trumpeter", "description": "Plays trumpet." },
+  { "displayName": "Harpist", "description": "Plays harp." },
+  { "displayName": "Trombonist", "description": "Plays trombone." },
+  { "displayName": "Violinist", "description": "Plays violin or fiddle." }
+]

@@ -42,11 +42,11 @@ public static class RoleSeeder
         var now = DateTime.UtcNow;
         var toAdd = RoleDisplayNames
             .Select(name => new { Name = name, Slug = slugHelper.GenerateSlug(name) })
-            .Where(x => !existingSlugsSet.Contains(x.Slug))
+            .Where(x => !existingSlugsSet.Contains(new Models.Slug(x.Slug)))
             .Select(x => new BandRole
             {
                 DisplayName = x.Name,
-                Slug = x.Slug,
+                Slug = new Models.Slug(x.Slug),
                 CreatedAtUtc = now,
                 UpdatedAtUtc = now
             })

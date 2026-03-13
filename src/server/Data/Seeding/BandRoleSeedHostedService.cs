@@ -42,7 +42,7 @@ public sealed class BandRoleSeedHostedService : IHostedService
         var docs = RoleDisplayNames.Select(name => new BandRole
         {
             DisplayName = name,
-            Slug = slug.GenerateSlug(name),
+            Slug = new Slug(slug.GenerateSlug(name)),
             CreatedAtUtc = now,
             UpdatedAtUtc = now
         });

@@ -7,4 +7,5 @@ public class Amp : Equipment
 
     // type : tube, solid-state, modeling, hybrid, etc.
     public string AmpType { get; set; } = string.Empty;
+    public Slug Slug { get; set; } = new Slug(string.Empty);
 }

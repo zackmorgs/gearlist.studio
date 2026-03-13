@@ -5,6 +5,7 @@ using BCrypt.Net;
 using Data;
 using Models;
 using Models.Dto;
+using Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
@@ -12,6 +13,7 @@ using Data.Mongo;
 using Data.BandRoles;
 using Data.Seeding;
 using Microsoft.Extensions.Options;
+using Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,6 +62,8 @@ builder.WebHost.UseKestrel(kestrelOptions =>
     kestrelOptions.ListenAnyIP(8080);
     kestrelOptions.ListenAnyIP(8443, listenOptions => listenOptions.UseHttps());
 });
+
+builder.Services.AddSingleton<ISlugService, SlugService>();
 
 var app = builder.Build();
 
@@ -161,5 +165,13 @@ app.MapGet("/api/me", (ClaimsPrincipal principal) =>
 
     return Results.Ok(new { id, email, name });
 }).RequireAuthorization();
+
+// after app is built, before app.Run()
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<IMongoDatabase>();
+    var seeder = new DatabaseSeeder(db);
+    await seeder.SeedAllAsync();
+}
 
 app.Run();
