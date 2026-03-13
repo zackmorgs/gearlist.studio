@@ -2,13 +2,20 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-const nav_links = [
+const main_nav_links = [
     { name: "About", path: "/about" },
     { name: "Artists", path: "/artists" },
     { name: "Equipment", path: "/equipment" },
     { name: "Genres", path: "/genres" },
     { name: "Contact", path: "/contact" },
-]
+];
+
+const auth_nav_links = [
+    { name: "Login", path: "/login" },
+    { name: "Profile", path: "/profile" },
+];
+
+
 
 export default function Nav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,15 +48,30 @@ export default function Nav() {
                     <span></span>
                 </button>
             </div>
-            <ul className={`nav-list ${isMenuOpen ? "active" : ""}`}>
-                {nav_links.map((link, index) => (
-                    <li key={index} className="nav-item">
-                        <Link to={link.path} className="nav-link" onClick={closeMenu}>
-                            <u>{link.name}</u>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            <div className={`nav-container ${isMenuOpen ? "active" : ""}`}>
+                <ul className="nav-list">
+                    {main_nav_links.map((link, index) => (
+                        <li key={index} className="nav-item">
+                            <Link to={link.path} className="nav-link" onClick={closeMenu}>
+                                <u>{link.name}</u>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+                <div className="nav-auth-links">
+                    <b className="menu-title text-center">User</b>
+
+                    <ul className="nav-list nav-auth-list">
+                        {auth_nav_links.map((link, index) => (
+                            <li key={index} className="nav-item">
+                                <Link to={link.path} className="nav-link" onClick={closeMenu}>
+                                    <u>{link.name}</u>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </nav>
     );
 }
