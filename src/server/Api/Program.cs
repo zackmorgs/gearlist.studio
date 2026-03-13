@@ -11,9 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using Data.Mongo;
 using Data.BandRoles;
-using Data.Seeding;
-using Microsoft.Extensions.Options;
 using Data.Seed;
+using Microsoft.Extensions.Options;
 using Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +34,6 @@ builder.Services.AddSingleton(sp =>
 });
 
 builder.Services.AddSingleton<IBandRoleRepository, BandRoleRepository>();
-builder.Services.AddHostedService<BandRoleSeedHostedService>();
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddScoped<AuthService>();
