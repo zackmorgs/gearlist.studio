@@ -64,12 +64,14 @@ export async function loginWithGoogle(idToken) {
  * @returns {{ id: string, email: string, name: string }}
  */
 export async function getMe(token) {
-  const res = await fetch("/api/me", {
+  const res = await fetch("/api/auth/me", {
     headers: { Authorization: `Bearer ${token}` },
   });
 
   if (res.status === 401) throw new Error("Unauthorized.");
   if (!res.ok) throw new Error("Failed to fetch user.");
 
-  return res.json();
+  const userData = JSON.parse(await res.text());
+  console.log("getMe response:", userData);
+  return userData;
 }

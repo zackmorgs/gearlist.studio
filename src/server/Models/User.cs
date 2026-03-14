@@ -4,6 +4,7 @@ public class User
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string? GoogleId { get; set; }
+    // public string AuthToken { get; set; } = string.Empty;
     public Slug Slug { get; set; } = new Slug(string.Empty);
     public string? ProfileImageUrl { get; set; }
     public string DisplayName { get; set; } = string.Empty;

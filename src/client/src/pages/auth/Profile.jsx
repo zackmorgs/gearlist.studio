@@ -1,13 +1,32 @@
 import React from "react";
 
+import { getMe } from "../../services/authService";
+
 import AuthenticatedView from "../../components/AuthenticatedView";
 import NotAuthenticatedView from "../../components/NotAuthenticatedView";
+
+
 
 export default function Profile() {
     let Logout = () => {
         localStorage.removeItem("auth_token");
         window.location.reload();
     }
+
+    const [user, setUser] = React.useState(null);
+
+    React.useEffect(() => {
+        const token = localStorage.getItem("auth_token");
+        if (!token) return;
+
+        getMe(token)
+            .then(userData => setUser(userData))
+            .catch(err => {
+                console.error("Failed to fetch user data:", err);
+                Logout();
+            }
+            );
+    }, []);
     return (
         <>
             <header className="panel text-center">
@@ -16,6 +35,13 @@ export default function Profile() {
             <section id="profile_info" className="panel">
                 <AuthenticatedView>
                     <p>You are logged in.</p>
+                    {user && (
+                        <div className="profile-details">
+                            <img src={user.profileImageUrl} alt={user.displayName} />
+                            <p><b>Name:</b> {user.displayName}</p>
+                            <p><b>Email:</b> {user.email}</p>
+                        </div>
+                    )}
                     <button className="btn" onClick={Logout}>
                         Log Out
                     </button>

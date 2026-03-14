@@ -8,11 +8,14 @@ using Services;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Host.Endpoints;
 
 public static class AuthEndpoints
 {
+    public static Db? Db { get; }
+
     public static void MapAuthEndpoints(this WebApplication app)
     {
         app.MapPost("/api/auth/google", async (GoogleAuthRequest request, AuthService authService, CancellationToken ct) =>
@@ -98,13 +101,42 @@ public static class AuthEndpoints
             });
         });
 
-        app.MapGet("/api/me", (ClaimsPrincipal principal) =>
+        _ = app.MapGet("/api/auth/me", async (ClaimsPrincipal principal, Db db) =>
         {
-            var id = principal.FindFirstValue(JwtRegisteredClaimNames.Sub);
             var email = principal.FindFirstValue(JwtRegisteredClaimNames.Email);
-            var name = principal.FindFirstValue("name");
 
-            return Results.Ok(new { id, email, name });
+            List<Claim> claims = principal.Claims.ToList();
+
+            claims.ForEach(c => Console.WriteLine($"Claim: {c.Type} = {c.Value}"));
+
+            // var nameIdentifier = claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.NameIdentifier)?.Value;
+            var nameIdentifier = claims[0].Value; // gives name identifier
+
+            Console.WriteLine("JTI: " + nameIdentifier);
+
+            if (nameIdentifier is null)
+                return Results.Unauthorized();
+
+            // if (!Guid.TryParse(jti, out var userId))
+            //     return Results.Unauthorized();
+
+            if (!Guid.TryParse(nameIdentifier, out var userId))
+                return Results.Unauthorized();
+
+            var user = await db.Users.Find(u => u.Id == userId).FirstOrDefaultAsync();
+
+            // if (user is null)
+            //     return Results.NotFound();
+
+            return Results.Ok(new
+            {
+                user.Id,
+                user.DisplayName,
+                user.Email,
+                user.ProfileImageUrl,
+                user.Slug,
+                user.CreatedAtUtc
+            });
         }).RequireAuthorization();
     }
 }
