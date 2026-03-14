@@ -2,6 +2,10 @@
 
 <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true" alt="Screenshot 2" width="375"/>
 
+<img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true" alt="Screenshot 2" width="375"/>
+
+<img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-3.png?raw=true" alt="Screenshot 2" width="375"/>
+
 # gearlist.studio
 
 A website for musicians to find the gear that their favorite musicians use.
