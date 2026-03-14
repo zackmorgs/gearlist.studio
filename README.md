@@ -1,3 +1,7 @@
+![Screenshot 1](https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-1.png?raw=true)
+
+![Screenshot 2](https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true)
+
 # gearlist.studio
 
 A website for musicians to find the gear that their favorite musicians use.
