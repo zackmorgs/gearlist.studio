@@ -1,3 +1,7 @@
+# gearlist.studio
+
+A website for musicians to find the gear that their favorite musicians use.
+
 <div style="display:flex; flex-direction: row;">
   <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-1.png?raw=true" alt="Screenshot 1" width="375"/>
 
@@ -8,13 +12,9 @@
   <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-4.png?raw=true" alt="Screenshot 4" width="375"/>
 </div>
 
-# gearlist.studio
-
-A website for musicians to find the gear that their favorite musicians use.
-
 # Technology
 
-- Ubuntu Server
+- Ubuntu Server1
 - C# .NET 10 MVC REST Backend
   - Entity Framework Core
   - Microsoft Authentication JwtBearer
