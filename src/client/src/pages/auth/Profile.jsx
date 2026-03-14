@@ -30,6 +30,8 @@ export default function Profile() {
     return (
         <>
             <header className="panel text-center">
+                {user && <img src={user.profileImageUrl} alt={user.displayName} id="profile_pic" />
+                }
                 <h1>Profile</h1>
             </header>
             <section id="profile_info" className="panel">
@@ -37,7 +39,6 @@ export default function Profile() {
                     <p>You are logged in.</p>
                     {user && (
                         <div className="profile-details">
-                            <img src={user.profileImageUrl} alt={user.displayName} />
                             <p><b>Name:</b> {user.displayName}</p>
                             <p><b>Email:</b> {user.email}</p>
                         </div>
