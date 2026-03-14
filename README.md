@@ -1,6 +1,6 @@
-![Screenshot 1](https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-1.png?raw=true)
+<img src="ttps://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-1.png?raw=true" alt="drawing" width="375"/>
 
-![Screenshot 2](https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true)
+<img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true" alt="drawing" width="375"/>
 
 # gearlist.studio
 
