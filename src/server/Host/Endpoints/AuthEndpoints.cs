@@ -8,7 +8,7 @@ using Services;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
-namespace Api.Endpoints;
+namespace Host.Endpoints;
 
 public static class AuthEndpoints
 {

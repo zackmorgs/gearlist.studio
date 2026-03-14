@@ -1,4 +1,4 @@
-namespace Api.Endpoints;
+namespace Host.Endpoints;
 
 public static class HealthEndpoints
 {

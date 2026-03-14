@@ -1,7 +1,6 @@
 using System.Text.Json;
 using Models;
 using MongoDB.Driver;
-using Services;
 using Slugify;
 
 namespace Data.Seed;

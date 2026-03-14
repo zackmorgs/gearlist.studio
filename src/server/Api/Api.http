@@ -1,6 +1,0 @@
-@Gearlist.Api_HostAddress = http://localhost:5093
-
-GET {{Gearlist.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

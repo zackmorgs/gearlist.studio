@@ -8,7 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Api/Api.csproj" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.4" />
+    <PackageReference Include="MongoDB.Driver" Version="3.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Models/Models.csproj" />
+    <ProjectReference Include="../Data/Data.csproj" />
+    <ProjectReference Include="../Services/Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,4 +12,4 @@ cd "$ROOT_DIR/src/client"
 npm run watch:host &
 
 cd "$ROOT_DIR"
-dotnet watch run
+dotnet watch run --project src/server/Host/Host.csproj

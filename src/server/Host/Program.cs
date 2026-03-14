@@ -9,7 +9,7 @@ using Data.Mongo;
 using Data.BandRoles;
 using Data.Seed;
 using Microsoft.Extensions.Options;
-using Api.Endpoints;
+using Host.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +80,18 @@ using (var scope = app.Services.CreateScope())
     await seeder.SeedAllAsync();
 }
 
-app.MapFallbackToFile("index.html");
+app.MapFallback(async context =>
+{
+    if (!context.Request.Path.StartsWithSegments("/api"))
+    {
+        context.Response.ContentType = "text/html";
+        await context.Response.SendFileAsync(
+            Path.Combine(app.Environment.WebRootPath, "index.html"));
+    }
+    else
+    {
+        context.Response.StatusCode = 404;
+    }
+});
 
 app.Run();
