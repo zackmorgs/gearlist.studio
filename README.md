@@ -3,9 +3,9 @@
 
   <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true" alt="Screenshot 2" width="375"/>
 
-  <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-2.png?raw=true" alt="Screenshot 2" width="375"/>
+  <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-3.png?raw=true" alt="Screenshot 3" width="375"/>
 
-  <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-3.png?raw=true" alt="Screenshot 2" width="375"/>
+  <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-4.png?raw=true" alt="Screenshot 4" width="375"/>
 </div>
 
 # gearlist.studio
