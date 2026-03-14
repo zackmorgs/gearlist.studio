@@ -5,8 +5,6 @@ using Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
-using Data.Mongo;
-using Data.BandRoles;
 using Data.Seed;
 using Microsoft.Extensions.Options;
 using Host.Endpoints;
@@ -15,7 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDb"));
+
 builder.Services.AddSingleton<Db>();
+
 builder.Services.AddSingleton<IMongoClient>(sp =>
 {
     var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
@@ -28,8 +28,6 @@ builder.Services.AddSingleton(sp =>
     var client = sp.GetRequiredService<IMongoClient>();
     return client.GetDatabase(settings.DatabaseName);
 });
-
-builder.Services.AddSingleton<IBandRoleRepository, BandRoleRepository>();
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddScoped<AuthService>();
