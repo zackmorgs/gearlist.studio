@@ -5,6 +5,7 @@ using Data;
 using Models;
 using Models.Dto;
 using Services;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
@@ -55,7 +56,7 @@ public static class AuthEndpoints
             });
         });
 
-        app.MapPost("/api/auth/login", async (LoginRequest request, Db db, IConfiguration config) =>
+        app.MapPost("/api/auth/login", async (LoginRequest request, Db db, IOptions<JwtSettings> jwtOptions) =>
         {
             var normalizedEmail = request.Email.Trim().ToLowerInvariant();
             var user = await db.Users.Find(u => u.Email == normalizedEmail).FirstOrDefaultAsync();
@@ -65,11 +66,7 @@ public static class AuthEndpoints
                 return Results.Unauthorized();
             }
 
-            var jwtConfig = config.GetSection("Jwt");
-            var key = jwtConfig["Key"] ?? throw new InvalidOperationException("Jwt:Key is not configured.");
-            var issuer = jwtConfig["Issuer"] ?? throw new InvalidOperationException("Jwt:Issuer is not configured.");
-            var audience = jwtConfig["Audience"] ?? throw new InvalidOperationException("Jwt:Audience is not configured.");
-            var expiresMinutes = int.TryParse(jwtConfig["ExpiresMinutes"], out var parsed) ? parsed : 60;
+            var jwt = jwtOptions.Value;
 
             var claims = new List<Claim>
             {
@@ -79,14 +76,14 @@ public static class AuthEndpoints
             };
 
             var credentials = new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Secret)),
                 SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: issuer,
-                audience: audience,
+                issuer: jwt.Issuer,
+                audience: jwt.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(expiresMinutes),
+                expires: DateTime.UtcNow.AddMinutes(jwt.ExpiryMinutes),
                 signingCredentials: credentials);
 
             return Results.Ok(new

@@ -19,4 +19,10 @@
     <ProjectReference Include="../Models/Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Seed/*.seed.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
