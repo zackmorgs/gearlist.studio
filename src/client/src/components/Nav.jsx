@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 const main_nav_links = [
     { name: "About", path: "/about" },
     { name: "Artists", path: "/artists" },
-    { name: "Equipment", path: "/equipment" },
     { name: "Genres", path: "/genres" },
+    { name: "Equipment", path: "/equipment" },
+    // { name: "Equipment", path: "/equipment" },a
     { name: "Contact", path: "/contact" },
 ];
 
