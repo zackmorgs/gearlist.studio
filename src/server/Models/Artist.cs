@@ -12,4 +12,5 @@ public class Artist
     public List<Guid> EquipmentGuids { get; set; } = new List<Guid>();
     public List<Guid> GenreGuids { get; set; } = new List<Guid>();
     public string Description { get; set; } = string.Empty;
+    public string ImageUrl { get; set; } = string.Empty;
 }

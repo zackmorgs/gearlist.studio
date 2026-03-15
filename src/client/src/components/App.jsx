@@ -55,6 +55,13 @@ export function App() {
           <Route path="/equipment/pedals" element={<Pedals />} />
           <Route path="/equipment/plugins" element={<Plugins />} />
 
+          {/* new entity forms — must be before :slug routes */}
+          <Route path="/artists/new" element={<NewArtistPage />} />
+          <Route path="/equipment/amps/new" element={<NewAmp />} />
+          <Route path="/equipment/instruments/new" element={<NewInstrument />} />
+          <Route path="/equipment/pedals/new" element={<NewPedal />} />
+          <Route path="/equipment/plugins/new" element={<NewPlugin />} />
+
           {/* entity pages */}
           <Route path="/artists/:slug" element={<ArtistPage />} />
           <Route path="/genres/:slug" element={<GenrePage />} />
@@ -62,13 +69,6 @@ export function App() {
           <Route path="/equipment/instruments/:slug" element={<InstrumentPage />} />
           <Route path="/equipment/pedals/:slug" element={<PedalPage />} />
           <Route path="/equipment/plugins/:slug" element={<PluginPage />} />
-
-          {/* crud */}
-          <Route path="/artists/new" element={<NewArtistPage />} />
-          <Route path="/equipment/amps/new" element={<NewAmp />} />
-          <Route path="/equipment/instruments/new" element={<NewInstrument />} />
-          <Route path="/equipment/pedals/new" element={<NewPedal />} />
-          <Route path="/equipment/plugins/new" element={<NewPlugin />} />
 
           {/* authentication */}
           <Route path="/login/" element={<Login />} />

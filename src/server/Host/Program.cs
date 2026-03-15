@@ -80,6 +80,7 @@ app.UseStaticFiles();
 
 app.MapHealthEndpoints();
 app.MapAuthEndpoints();
+app.MapUploadEndpoints();
 app.MapArtistEndpoints();
 app.MapAmpEndpoints();
 app.MapPedalEndpoints();

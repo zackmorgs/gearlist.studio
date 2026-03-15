@@ -250,6 +250,12 @@ header {
   }
 }
 
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
 .input {
   display: block;
   width: 100%;
@@ -493,6 +499,91 @@ input[type="file"].input {
 }
 .top-10-bracket {
   color: #484848;
+}
+
+#artist_page_header {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  height: 12rem;
+
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    h1 {
+      color: $brandBlueAccent;
+      font-size: 2rem;
+      margin: 0;
+      z-index: 15;
+    }
+  }
+}
+
+#bio_header {
+  color: #d9d9d9;
+  margin-top: 0;
+}
+
+.description-toggle {
+  max-height: 10rem;
+  overflow: hidden;
+  position: relative;
+
+  &.expanded {
+    max-height: none;
+
+    #toggle_overlay {
+      display: none;
+    }
+  }
+  #toggle_overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(17, 17, 17, 1), transparent);
+    display: block;
+    z-index: 20;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    svg {
+      width: 2rem;
+      height: 2rem;
+      fill: $cream;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  #toggle_toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+
+    &:active {
+      svg {
+        transform: scale(0.9);
+      }
+    }
+  }
 }
 
 #footer_main {
