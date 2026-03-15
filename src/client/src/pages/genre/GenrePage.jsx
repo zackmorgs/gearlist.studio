@@ -45,7 +45,7 @@ export default function GenrePage() {
                             </ul>
                         ) : (
                             <p>No artists found for this genre.</p>
-                        )}1
+                        )}
                         <Link to="/" className="btn">
                             Add an Artist
                         </Link>
