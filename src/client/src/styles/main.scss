@@ -190,6 +190,11 @@ body {
   background: linear-gradient(74deg, rgb(0 0 0 / 40%), rgba(0, 0, 0, 0.05));
   border: 1px solid #ffffff12;
   border-radius: 0.5rem;
+  transition:
+    color 0.3s ease,
+    border 0.3s ease,
+    text-shadow 0.3s ease,
+    transform 0.1s ease;
   &:hover {
     color: #22ccb2;
   }
@@ -197,6 +202,7 @@ body {
   &:active {
     border: 1px solid #ffffff4d;
     text-shadow: 0px 0px 0.5rem #ffffffbd;
+    transform: scale(0.95);
   }
 
   u {
@@ -292,6 +298,19 @@ header {
   appearance: none;
   -webkit-appearance: none;
   border: none;
+  cursor: pointer;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease,
+    text-shadow 0.1s ease;
+
+  &:active {
+    transform: scale(0.95);
+    box-shadow:
+      2px 2px 0.5rem rgba(0, 0, 0, 0.5882352941),
+      inset 0px 0px 0.5rem rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 0.125rem rgba(0, 0, 0, 1);
+  }
 }
 
 .btn-icon {
@@ -345,7 +364,6 @@ header {
   border-radius: 1rem;
   cursor: pointer;
   transition: transform 0.3s ease;
-
   box-shadow: 12px 12px 1rem rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
   overflow: hidden;
