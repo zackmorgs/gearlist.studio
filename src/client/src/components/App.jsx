@@ -10,8 +10,9 @@ import Contact from './../pages/Contact';
 import Artists from '../pages/artists/Artists';
 import Genres from './../pages/Genres';
 import Equipment from "../pages/equipment/Equipment";
+
 import Amps from "../pages/equipment/Amps";
-import Instrument from "../pages/equipment/Instruments";
+import Instruments from "../pages/equipment/Instruments";
 import Pedals from "../pages/equipment/Pedals";
 import Plugins from "../pages/equipment/Plugins";
 

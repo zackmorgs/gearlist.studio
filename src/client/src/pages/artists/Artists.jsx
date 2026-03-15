@@ -58,7 +58,7 @@ export default function Artists() {
 
 
                 {artists.length === 0 ? (
-                    <div id="no-artists">
+                    <div id="no-search-results" className="text-center">
                         <p>No artists found.</p>
                         <a href="/artists/new" className="btn">Add an artist</a>
                     </div>

@@ -434,7 +434,7 @@ header {
   }
 }
 
-#no-artists {
+#no-search-results {
   text-align: center;
   padding: 2rem;
   background-color: darken($earthRed, 25%);
@@ -442,6 +442,7 @@ header {
   // color: $darkGrey;
   display: block;
   border-radius: 0.5rem;
+  margin-top: 1rem;
 }
 .genre-card {
   min-height: 5rem;

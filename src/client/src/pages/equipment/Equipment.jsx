@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getAmps } from "../../services/ampService";
-import { getPedals } from "../../services/pedalService";
-import { getPlugins } from "../../services/pluginService";
+import { getInstruments } from "./../../services/instrumentService";
+import { getAmps } from "./../../services/ampService";
+import { getPedals } from "./../../services/pedalService";
+import { getPlugins } from "./../../services/pluginService";
 
 export default function Equipment() {
     const [amps, setAmps] = useState([]);
+    const [instruments, setInstruments] = useState([]);
     const [pedals, setPedals] = useState([]);
     const [plugins, setPlugins] = useState([]);
 
@@ -16,6 +18,7 @@ export default function Equipment() {
                 setAmps(await getAmps());
                 setPedals(await getPedals());
                 setPlugins(await getPlugins());
+                setInstruments(await getInstruments());
             } catch (err) {
                 console.error(err);
             }
@@ -31,6 +34,17 @@ export default function Equipment() {
             <section className="panel">
                 <p>Here you can find all the gear used by your favorite artists, and add your own!</p>
 
+            </section>
+            <section id="instruments" className="panel">
+                <h2>Instruments <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
+                <ul>
+                    {instruments.length === 0 ? (<li>No instruments found.</li>) : (
+                        instruments.map(instrument => <li key={instrument.id}>{instrument.displayName || instrument.name}</li>)
+                    )}
+                </ul>
+                <Link to="/equipment/instruments/" className="btn btn-primary">
+                    <span>View All Instruments</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
+                </Link>
             </section>
             <section id="amps" className="panel">
                 <h2>Amps <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>

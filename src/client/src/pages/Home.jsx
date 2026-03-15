@@ -1,5 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { getArtists } from "../services/artistService";
+import { getInstruments } from "../services/instrumentService";
+import { getAmps } from "../services/ampService";
+import { getPedals } from "../services/pedalService";
+import { getPlugins } from "../services/pluginService";
 
 const artist_example_list = [
     {
@@ -98,16 +104,132 @@ const plugin_example_list = [
 
 
 export default function Home() {
+    const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchMessage, setSearchMessage] = useState("");
+
+    const normalizedSearchTerm = useMemo(() => searchTerm.trim().toLowerCase(), [searchTerm]);
+
+    function slugify(value) {
+        return value
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-");
+    }
+
+    function getSlug(entity) {
+        if (!entity) return "";
+
+        if (typeof entity.slug === "string") {
+            return entity.slug;
+        }
+
+        if (entity.slug && typeof entity.slug.value === "string") {
+            return entity.slug.value;
+        }
+
+        return slugify(entity.displayName || entity.name || "");
+    }
+
+    function getLabel(entity) {
+        return (entity?.displayName || entity?.name || "").toLowerCase();
+    }
+
+    function findBestMatch(items, term) {
+        const exact = items.find((item) => getLabel(item) === term);
+        if (exact) return exact;
+
+        return items.find((item) => getLabel(item).includes(term)) || null;
+    }
+
+    async function handleSearchSubmit(event) {
+        event.preventDefault();
+
+        if (!normalizedSearchTerm) {
+            setSearchMessage("");
+            return;
+        }
+
+        try {
+            const [artists, instruments, amps, pedals, plugins] = await Promise.all([
+                getArtists(),
+                getInstruments(),
+                getAmps(),
+                getPedals(),
+                getPlugins()
+            ]);
+
+            const artistsMatch = findBestMatch(artists, normalizedSearchTerm);
+            if (artistsMatch) {
+                setSearchMessage("");
+                navigate(`/artists/${getSlug(artistsMatch)}`);
+                return;
+            }
+
+            const instrumentsMatch = findBestMatch(instruments, normalizedSearchTerm);
+            if (instrumentsMatch) {
+                setSearchMessage("");
+                navigate(`/equipment/instruments/${getSlug(instrumentsMatch)}`);
+                return;
+            }
+
+            const ampsMatch = findBestMatch(amps, normalizedSearchTerm);
+            if (ampsMatch) {
+                setSearchMessage("");
+                navigate(`/equipment/amps/${getSlug(ampsMatch)}`);
+                return;
+            }
+
+            const pedalsMatch = findBestMatch(pedals, normalizedSearchTerm);
+            if (pedalsMatch) {
+                setSearchMessage("");
+                navigate(`/equipment/pedals/${getSlug(pedalsMatch)}`);
+                return;
+            }
+
+            const pluginsMatch = findBestMatch(plugins, normalizedSearchTerm);
+            if (pluginsMatch) {
+                setSearchMessage("");
+                navigate(`/equipment/plugins/${getSlug(pluginsMatch)}`);
+                return;
+            }
+
+            setSearchMessage("No results found. Try a different search term.");
+        } catch (err) {
+            setSearchMessage("Search failed. Please try again.");
+            console.error(err);
+        }
+    }
+
     return (
         <>
             <header className="panel text-center">
                 <h1>Discover the Gear Behind the Sound</h1>
                 <p>The ultimate database of guitars, amps, pedals, plugins, and studio equipment used by musicians around the world.</p>
 
-                <div className="input-group">
+                <form className="input-group" onSubmit={handleSearchSubmit}>
                     <svg className="icon-search" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 -960 960 960" width="1rem" fill="#111111"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" /></svg>
-                    <input id="search_input" type="text" placeholder="Search artists, instruments, amps, pedals, and plugins..." className="input input-search" />
-                </div>
+                    <input
+                        id="search_input"
+                        type="search"
+                        placeholder="Search artists, instruments, amps, pedals, and plugins..."
+                        className="input input-search"
+                        value={searchTerm}
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                            if (searchMessage) {
+                                setSearchMessage("");
+                            }
+                        }}
+                    />
+                </form>
+                {searchMessage && <div id="no-search-results">
+                    <p>{searchMessage}</p>
+                    <Link to={`/create/${searchTerm}`} className="btn">
+                        <span>Add "{searchTerm}"</span>
+                    </Link>
+                </div>}
 
                 <br />
                 {/* <Link id="search_Link" className="btn">
@@ -123,7 +245,7 @@ export default function Home() {
                 <Link to="/artists" className="btn">
                     <span>Explore Artists</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
-                <p class="subtitle">Explore the gear via our curated artist profiles.</p>
+                <p className="subtitle">Explore the gear via our curated artist profiles.</p>
                 <ul className="artist-list">
                     {artist_example_list.map((artist, index) => (
                         <li key={index} className="artist-card">
@@ -143,12 +265,12 @@ export default function Home() {
                 <h2>Instruments</h2>
                 <hr className="rule-sm" />
 
-                <Link to="/instruments" className="btn"><span>Explore Instruments</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
+                <Link to="/equipment/instruments" className="btn"><span>Explore Instruments</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
                 <p className="subtitle">See a database of guitars, bass, keyboards and other instruments that artists use.</p>
                 <ul className="instrument-list">
                     {instrument_example_list.map((instrument, index) => (
                         <li key={index} className="instrument-card">
-                            <Link to={`/instruments/${instrument.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            <Link to={`/equipment/instruments/${instrument.name.toLowerCase().replace(/\s+/g, '-')}`}>
                                 <img className="instrument-photo" src={instrument
                                     .picture} alt={instrument.name} />
                                 <div className="overlay">
@@ -167,12 +289,12 @@ export default function Home() {
                 <h2>Amps</h2>
                 <hr className="rule-sm" />
 
-                <Link to="/amps" className="btn"><span>Explore Amps</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
+                <Link to="/equipment/amps" className="btn"><span>Explore Amps</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" /></Link>
                 <p className="subtitle">See a database of amplifiers that artists use.</p>
                 <ul className="amp-list">
                     {amp_example_list.map((amp, index) => (
                         <li key={index} className="amp-card">
-                            <Link to={`/amps/${amp.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            <Link to={`/equipment/amps/${amp.name.toLowerCase().replace(/\s+/g, '-')}`}>
 
                                 <img className="amp-photo" src={amp
                                     .picture} alt={amp.name} />
@@ -192,7 +314,7 @@ export default function Home() {
                 <h2>Pedals</h2>
                 <hr className="rule-sm" />
 
-                <Link to="/pedals" className="btn">
+                <Link to="/equipment/pedals" className="btn">
                     <span>Explore Pedals</span>
                     <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
@@ -200,7 +322,7 @@ export default function Home() {
                 <ul className="pedal-list">
                     {pedal_example_list.map((pedal, index) => (
                         <li key={index} className="pedal-card">
-                            <Link to={`/pedals/${pedal.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            <Link to={`/equipment/pedals/${pedal.name.toLowerCase().replace(/\s+/g, '-')}`}>
                                 <img className="pedal-photo" src={pedal.picture
                                 } alt={pedal.name} />
                                 <div className="overlay">
@@ -217,14 +339,14 @@ export default function Home() {
                 <h2>Plugins</h2>
                 <hr className="rule-sm" />
 
-                <Link to="/plugins" className="btn">
+                <Link to="/equipment/plugins" className="btn">
                     <span>Explore Plugins</span> <img src="/assets/svg/icon-arrow-forward.svg" alt="Arrow Forward Icon" className="btn-icon" />
                 </Link>
                 <p>See a database of VST/VSTi, CLAP, and RTAS plugins that artists use.</p>
                 <ul className="plugin-list">
                     {plugin_example_list.map((plugin, index) => (
                         <li key={index} className="plugin-card">
-                            <Link to={`/plugins/${plugin.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            <Link to={`/equipment/plugins/${plugin.name.toLowerCase().replace(/\s+/g, '-')}`}>
                                 <img className="plugin-photo" src={plugin.picture
                                 } alt={plugin.name} />
                                 <div className="overlay">
