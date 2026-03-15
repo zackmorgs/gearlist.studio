@@ -66,5 +66,14 @@ public static class ArtistEndpoints
             var artists = await db.Artists.Find(filter).ToListAsync(ct);
             return artists.Count == 0 ? Results.NotFound() : Results.Ok(artists);
         });
+
+        group.MapGet("/four-random", async (Db db, CancellationToken ct) =>
+        {
+            var artists = await db.Artists.Aggregate()
+                .Sample(4)
+                .ToListAsync(ct);
+            return Results.Ok(artists);
+        });
+
     }
 }

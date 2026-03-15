@@ -55,5 +55,14 @@ public static class AmpEndpoints
             var result = await db.Amps.DeleteOneAsync(a => a.Id == id, ct);
             return result.DeletedCount == 0 ? Results.NotFound() : Results.NoContent();
         });
+
+        group.MapGet("/four-random", async (Db db, CancellationToken ct) =>
+        {
+            var amps = await db.Amps.Aggregate()
+                .Sample(4)
+                .ToListAsync(ct);
+            return Results.Ok(amps);
+        });
     }
+
 }

@@ -55,5 +55,13 @@ public static class PluginEndpoints
             var result = await db.Plugins.DeleteOneAsync(p => p.Id == id, ct);
             return result.DeletedCount == 0 ? Results.NotFound() : Results.NoContent();
         });
+
+        group.MapGet("/four-random", async (Db db, CancellationToken ct) =>
+        {
+            var plugins = await db.Plugins.Aggregate()
+                .Sample(4)
+                .ToListAsync(ct);
+            return Results.Ok(plugins);
+        });
     }
 }

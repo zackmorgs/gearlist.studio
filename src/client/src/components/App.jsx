@@ -24,6 +24,12 @@ import InstrumentPage from "../pages/equipment/entity-page/InstrumentPage";
 import PedalPage from "../pages/equipment/entity-page/PedalPage";
 import PluginPage from "../pages/equipment/entity-page/PluginPage";
 
+import NewArtistPage from "../pages/artists/NewArtistPage";
+import NewAmp from "../pages/equipment/new/NewAmp";
+import NewInstrument from "../pages/equipment/new/NewInstrument";
+import NewPedal from "../pages/equipment/new/NewPedal";
+import NewPlugin from "../pages/equipment/new/NewPlugin";
+
 import Login from "../pages/auth/Login";
 import Profile from "../pages/auth/Profile";
 
@@ -56,6 +62,13 @@ export function App() {
           <Route path="/equipment/instruments/:slug" element={<InstrumentPage />} />
           <Route path="/equipment/pedals/:slug" element={<PedalPage />} />
           <Route path="/equipment/plugins/:slug" element={<PluginPage />} />
+
+          {/* crud */}
+          <Route path="/artists/new" element={<NewArtistPage />} />
+          <Route path="/equipment/amps/new" element={<NewAmp />} />
+          <Route path="/equipment/instruments/new" element={<NewInstrument />} />
+          <Route path="/equipment/pedals/new" element={<NewPedal />} />
+          <Route path="/equipment/plugins/new" element={<NewPlugin />} />
 
           {/* authentication */}
           <Route path="/login/" element={<Login />} />

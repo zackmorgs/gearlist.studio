@@ -55,5 +55,13 @@ public static class PedalEndpoints
             var result = await db.Pedals.DeleteOneAsync(p => p.Id == id, ct);
             return result.DeletedCount == 0 ? Results.NotFound() : Results.NoContent();
         });
+
+        group.MapGet("/four-random", async (Db db, CancellationToken ct) =>
+        {
+            var pedals = await db.Pedals.Aggregate()
+                .Sample(4)
+                .ToListAsync(ct);
+            return Results.Ok(pedals);
+        });
     }
 }
