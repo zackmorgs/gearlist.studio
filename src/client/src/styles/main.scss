@@ -272,6 +272,16 @@ header {
   }
 }
 
+input[type="file"].input {
+  background: white;
+
+  &::file-selector-button {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+}
+
 .rule-sm {
   max-width: 3rem;
   /* border: 0px; */
@@ -282,6 +292,7 @@ header {
 }
 
 .btn {
+  font-family: "Quicksand", sans-serif;
   padding: 1rem;
   background: linear-gradient(32deg, #000000, #1a1a1a, #040404);
   display: inline-flex;
