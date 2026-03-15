@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getAmps } from "../services/ampService";
-import { getPedals } from "../services/pedalService";
-import { getPlugins } from "../services/pluginService";
+import { getAmps } from "../../services/ampService";
+import { getPedals } from "../../services/pedalService";
+import { getPlugins } from "../../services/pluginService";
 
 export default function Equipment() {
     const [amps, setAmps] = useState([]);

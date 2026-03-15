@@ -1,11 +1,11 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
-
-export default function Instrument() {
+export default function InstrumentPage() {
     return (
         <>
             <header className="panel text-center">
-                <h1>Instrument</h1>
+                <h1>Instrument Page</h1>
             </header>
         </>
     );

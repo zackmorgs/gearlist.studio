@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { getArtists } from "../services/artistService";
-import { getGenres } from "../services/genreService";
-import { getInstruments } from "../services/instrumentService";
+import { getArtists } from "../../services/artistService";
+import { getGenres } from "../../services/genreService";
+import { getInstruments } from "../../services/instrumentService";
 
 
 export default function Artists() {
