@@ -112,7 +112,7 @@ public static class AuthEndpoints
             // var nameIdentifier = claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.NameIdentifier)?.Value;
             var nameIdentifier = claims[0].Value; // gives name identifier
 
-            Console.WriteLine("JTI: " + nameIdentifier);
+            // Console.WriteLine("JTI: " + nameIdentifier);
 
             if (nameIdentifier is null)
                 return Results.Unauthorized();

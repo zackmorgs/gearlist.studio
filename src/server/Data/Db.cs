@@ -16,11 +16,19 @@ public sealed class Db
         Artists = database.GetCollection<Artist>(config.ArtistsCollectionName);
         Bands = database.GetCollection<Band>(config.BandsCollectionName);
         Amps = database.GetCollection<Amp>(config.AmpsCollectionName);
+        Pedals = database.GetCollection<Pedal>(config.PedalsCollectionName);
+        Plugins = database.GetCollection<Plugin>(config.PluginsCollectionName);
+        Genres = database.GetCollection<Genre>(config.GenresCollectionName);
+        Instruments = database.GetCollection<Instrument>(config.InstrumentsCollectionName);
     }
     public IMongoCollection<Amp> Amps { get; }
     public IMongoCollection<Artist> Artists { get; }
     public IMongoCollection<Band> Bands { get; }
     public IMongoCollection<BandRole> BandRoles { get; }
+    public IMongoCollection<Genre> Genres { get; }
+    public IMongoCollection<Instrument> Instruments { get; }
+    public IMongoCollection<Pedal> Pedals { get; }
+    public IMongoCollection<Plugin> Plugins { get; }
     public IMongoCollection<User> Users { get; }
 
     public async Task EnsureIndexesAsync(CancellationToken cancellationToken = default)
@@ -41,5 +49,9 @@ public sealed class MongoDbSettings
     public string ArtistsCollectionName { get; set; } = "artists";
     public string BandsCollectionName { get; set; } = "bands";
     public string BandRolesCollectionName { get; set; } = "band_roles";
+    public string GenresCollectionName { get; set; } = "genres";
+    public string InstrumentsCollectionName { get; set; } = "instruments";
+    public string PedalsCollectionName { get; set; } = "pedals";
+    public string PluginsCollectionName { get; set; } = "plugins";
     public string UsersCollectionName { get; set; } = "users";
 }

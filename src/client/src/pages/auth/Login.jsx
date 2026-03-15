@@ -45,29 +45,16 @@ export default function Login() {
         }
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        clearError();
-        try {
-            await login(email, password);
-            navigate("/profile");
-        } catch {
-            // error is set in context
-        }
-    }
 
     return (
         <>
             <header className="panel text-center">
                 <h1>Login</h1>
+                <p>Use Google SSO to Login and Register</p>
             </header>
             <section id="login_form" className="panel">
                 {error && <p role="alert">{error}</p>}
-
                 <div ref={googleButtonRef} />
-
-                <hr />
-
             </section>
         </>
     );

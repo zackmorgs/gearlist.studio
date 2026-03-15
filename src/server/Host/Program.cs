@@ -80,6 +80,13 @@ app.UseStaticFiles();
 
 app.MapHealthEndpoints();
 app.MapAuthEndpoints();
+app.MapArtistEndpoints();
+app.MapAmpEndpoints();
+app.MapPedalEndpoints();
+app.MapPluginEndpoints();
+app.MapBandRoleEndpoints();
+app.MapGenreEndpoints();
+app.MapInstrumentEndpoints();
 
 using (var scope = app.Services.CreateScope())
 {
