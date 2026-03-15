@@ -320,7 +320,8 @@ header {
 .instrument-list,
 .amp-list,
 .pedal-list,
-.plugin-list {
+.plugin-list,
+.genre-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -337,7 +338,8 @@ header {
 .instrument-card,
 .amp-card,
 .pedal-card,
-.plugin-card {
+.plugin-card,
+.genre-card {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
@@ -377,7 +379,8 @@ header {
 .instrument-photo,
 .amp-photo,
 .pedal-photo,
-.plugin-photo {
+.plugin-photo,
+.genre-photo {
   position: relative;
   width: 100%;
   height: 100%;
@@ -421,6 +424,21 @@ header {
   // color: $darkGrey;
   display: block;
   border-radius: 0.5rem;
+}
+.genre-card {
+  min-height: 5rem;
+
+  a {
+    text-decoration: none;
+    color: $cream;
+  }
+}
+.no-photo {
+  background: linear-gradient(0deg, black, transparent);
+  height: 100%;
+  width: 100%;
+  font-size: 1rem;
+  display: block;
 }
 
 #footer_main {

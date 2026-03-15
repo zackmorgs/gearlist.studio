@@ -22,6 +22,13 @@ export async function getArtist(id) {
   return res.json();
 }
 
+export async function getArtistByGenreSlug(genreSlug) {
+  const res = await fetch(`${BASE}/genre/${genreSlug}`);
+  if (res.status === 404) throw new Error("Artists not found.");
+  if (!res.ok) throw new Error("Failed to fetch artists.");
+  return res.json();
+}
+
 /**
  * GET /api/artists/slug/:slug
  * @param {string} slug

@@ -24,6 +24,7 @@ public static class GenreEndpoints
 
         group.MapGet("/slug/{slug}", async (string slug, Db db, CancellationToken ct) =>
         {
+            Console.WriteLine("Slug:", slug);
             var genre = await db.Genres.Find(g => g.Slug.Value == slug).FirstOrDefaultAsync(ct);
             return genre is null ? Results.NotFound() : Results.Ok(genre);
         });

@@ -33,7 +33,7 @@ export default function Artists() {
                 <p>Browse and discover your favorite artist's gear.</p>
             </header>
             <section id="artist_browse" className="panel">
-                <b>Filter:</b>
+                <span className="label">Filter:</span>
                 <div className="input-group">
                     <select className="input input-select">
                         <option value="">All genres</option>

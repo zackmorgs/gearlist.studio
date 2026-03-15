@@ -9,6 +9,7 @@ import About from './../pages/About';
 import Contact from './../pages/Contact';
 import Artists from './../pages/Artists';
 import Genres from './../pages/Genres';
+import GenrePage from './../pages/genre/GenrePage';
 import Equipment from "../pages/Equipment";
 
 import Login from "../pages/auth/Login";
@@ -25,6 +26,7 @@ export function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/artists/" element={<Artists />} />
           <Route path="/genres/" element={<Genres />} />
+          <Route path="/genres/:slug" element={<GenrePage />} />
           <Route path="/equipment/" element={<Equipment />} />
           <Route path="/login/" element={<Login />} />
           <Route path="/profile/" element={<Profile />} />

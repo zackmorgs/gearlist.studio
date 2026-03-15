@@ -55,5 +55,16 @@ public static class ArtistEndpoints
             var result = await db.Artists.DeleteOneAsync(a => a.Id == id, ct);
             return result.DeletedCount == 0 ? Results.NotFound() : Results.NoContent();
         });
+
+        group.MapGet("/genre/{slug}", async (string slug, Db db, CancellationToken ct) =>
+        {
+            var filter = Builders<Artist>.Filter.Or(
+                Builders<Artist>.Filter.Eq("GenreSlug", slug),
+                Builders<Artist>.Filter.Eq("genreSlug", slug)
+            );
+
+            var artists = await db.Artists.Find(filter).ToListAsync(ct);
+            return artists.Count == 0 ? Results.NotFound() : Results.Ok(artists);
+        });
     }
 }
