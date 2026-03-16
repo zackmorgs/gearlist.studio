@@ -28,7 +28,15 @@ A website for musicians to find the gear that their favorite musicians use.
     - PostCSS
       - Autoprefixer
 
-## `dev` the project
+## Getting Started
+
+1. Install dependencies
+
+```
+npm run setup
+```
+
+2. Run the project
 
 Run both watchers from project root:
 
