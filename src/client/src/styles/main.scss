@@ -376,6 +376,7 @@ input[type="file"].input {
 .pedal-card,
 .plugin-card,
 .genre-card {
+  aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
@@ -421,7 +422,7 @@ input[type="file"].input {
 .instrument-placeholder {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   /* border-radius: 1rem; */
   z-index: 25;
 }
