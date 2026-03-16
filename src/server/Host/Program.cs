@@ -82,6 +82,7 @@ app.MapHealthEndpoints();
 app.MapAuthEndpoints();
 app.MapUploadEndpoints();
 app.MapArtistEndpoints();
+app.MapBandEndpoints();
 app.MapAmpEndpoints();
 app.MapPedalEndpoints();
 app.MapPluginEndpoints();

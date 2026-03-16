@@ -2,7 +2,7 @@ namespace Models;
 
 public class Instrument : Equipment
 {
-    public string InstrumentType { get; set; } = string.Empty;
+    public Guid InstrumentTypeGuid { get; set; } = Guid.Empty;
     // Possible Values
     // - Guitar
     // - Bass
@@ -12,5 +12,4 @@ public class Instrument : Equipment
     // - Etc.
     // - Etc.
     // - Etc.  
-
 }

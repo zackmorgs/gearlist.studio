@@ -386,6 +386,8 @@ input[type="file"].input {
   overflow: hidden;
 
   .overlay {
+    margin: 0;
+
     position: absolute;
     bottom: 0;
     left: 0;
@@ -422,6 +424,10 @@ input[type="file"].input {
   height: 100%;
   /* border-radius: 1rem; */
   z-index: 25;
+}
+
+.instrument-link {
+  max-height: 5rem;
 }
 
 .instrument-placeholder {
@@ -505,7 +511,7 @@ input[type="file"].input {
   position: relative;
   background-position: center;
   background-size: cover;
-  height: 12rem;
+  height: 22rem;
 
   .overlay {
     position: absolute;

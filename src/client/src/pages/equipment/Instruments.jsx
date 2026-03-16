@@ -38,9 +38,9 @@ export default function Instruments() {
                     <ul className="instrument-list">
                         {instruments.map(instrument => (
                             <li className="instrument-card" key={instrument.id}>
-                                <Link to={`/equipment/instruments/${instrument.slug.value}`}>
+                                <Link className="instrument-link" to={`/equipment/instruments/${instrument.slug.value}`}>
                                     {instrument.imageUrl ? (
-                                        <img src={instrument.imageUrl} alt={instrument.name} />
+                                        <img className="instrument-photo" src={instrument.imageUrl} alt={instrument.name} />
                                     ) : (
                                         <svg className="instrument-placeholder" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M162-186q-42-42-42-102t42-102q42-42 102-42 20 0 38 5.5t34 14.5v-309l456-95v458q0 60-42 102t-102 42q-60 0-102-42t-42-102q0-60 42-102t102-42q20 0 38 5.5t34 14.5v-172l-312 77v289q0 60-42 102t-102 42q-60 0-102-42Z" /></svg>
                                     )}

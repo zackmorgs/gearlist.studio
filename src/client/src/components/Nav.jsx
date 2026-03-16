@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const main_nav_links = [
     { name: "About", path: "/about" },
+    { name: "Bands", path: "/bands" },
     { name: "Artists", path: "/artists" },
     { name: "Genres", path: "/genres" },
     { name: "Equipment", path: "/equipment" },

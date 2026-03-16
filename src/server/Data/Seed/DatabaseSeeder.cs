@@ -24,7 +24,7 @@ public sealed class DatabaseSeeder
     {
         await SeedBandRolesAsync(ct);
         await SeedGenresAsync(ct);
-        await SeedInstrumentsAsync(ct);
+        await SeedInstrumentTypesAsync(ct);
     }
 
     private async Task SeedBandRolesAsync(CancellationToken ct)
@@ -79,10 +79,10 @@ public sealed class DatabaseSeeder
         }
     }
 
-    private async Task SeedInstrumentsAsync(CancellationToken ct)
+    private async Task SeedInstrumentTypesAsync(CancellationToken ct)
     {
-        var collection = _db.GetCollection<Instrument>("instruments");
-        var records = await LoadSeedFileAsync<InstrumentSeedRecord>("instruments.seed.json");
+        var collection = _db.GetCollection<InstrumentType>("instrument_types");
+        var records = await LoadSeedFileAsync<InstrumentTypeSeedRecord>("instrumenttypes.seed.json");
 
         foreach (var record in records)
         {
@@ -94,10 +94,9 @@ public sealed class DatabaseSeeder
 
             if (exists) continue;
 
-            var instrument = new Instrument
+            var instrument = new InstrumentType
             {
                 DisplayName = record.DisplayName,
-                InstrumentType = record.InstrumentType,
                 Slug = new Slug(slugValue)
             };
 
@@ -123,4 +122,5 @@ public sealed class DatabaseSeeder
     private record BandRoleSeedRecord(string DisplayName, string Description);
     private record GenreSeedRecord(string DisplayName);
     private record InstrumentSeedRecord(string DisplayName, string InstrumentType);
+    private record InstrumentTypeSeedRecord(string DisplayName);
 }

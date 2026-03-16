@@ -11,6 +11,16 @@ export async function getArtists() {
 }
 
 /**
+ * GET /api/artists/four-random
+ * @returns {Artist[]}
+ */
+export async function getFourRandomArtists() {
+  const res = await fetch(`${BASE}/four-random`);
+  if (!res.ok) throw new Error("Failed to fetch random artists.");
+  return res.json();
+}
+
+/**
  * GET /api/artists/:id
  * @param {string} id
  * @returns {Artist}

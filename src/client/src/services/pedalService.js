@@ -11,6 +11,16 @@ export async function getPedals() {
 }
 
 /**
+ * GET /api/pedals/four-random
+ * @returns {Pedal[]}
+ */
+export async function getFourRandomPedals() {
+  const res = await fetch(`${BASE}/four-random`);
+  if (!res.ok) throw new Error("Failed to fetch random pedals.");
+  return res.json();
+}
+
+/**
  * GET /api/pedals/:id
  * @param {string} id
  * @returns {Pedal}

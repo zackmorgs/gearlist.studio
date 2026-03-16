@@ -11,6 +11,16 @@ export async function getInstruments() {
 }
 
 /**
+ * GET /api/instruments/four-random
+ * @returns {Instrument[]}
+ */
+export async function getFourRandomInstruments() {
+  const res = await fetch(`${BASE}/four-random`);
+  if (!res.ok) throw new Error("Failed to fetch random instruments.");
+  return res.json();
+}
+
+/**
  * GET /api/instruments/:id
  * @param {string} id
  * @returns {Instrument}

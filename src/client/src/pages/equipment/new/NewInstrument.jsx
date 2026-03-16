@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
 
 import { createInstrument } from "../../../services/instrumentService";
 
@@ -18,8 +19,27 @@ export default function NewInstrument() {
     const [displayName, setDisplayName] = useState("");
     const [description, setDescription] = useState("");
     const [instrumentType, setInstrumentType] = useState("");
+    const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
     const [error, setError] = useState("");
     const [submitting, setSubmitting] = useState(false);
+
+    async function handleFileChange(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        setImageFile(file);
+        setImagePreview(URL.createObjectURL(file));
+    }
+
+    async function uploadImage(file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        const res = await fetch("/api/upload", { method: "POST", body: formData });
+        if (!res.ok) throw new Error("Image upload failed.");
+        const data = await res.json();
+        return data.url;
+    }
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -30,6 +50,10 @@ export default function NewInstrument() {
         setError("");
         setSubmitting(true);
         try {
+            let imageUrl = "";
+            if (imageFile) {
+                imageUrl = await uploadImage(imageFile);
+            }
             const slug = slugify(displayName);
             const instrument = {
                 slug: { value: slug },
@@ -37,7 +61,7 @@ export default function NewInstrument() {
                 description,
                 instrumentType,
                 amazonID: "",
-                imageUrl: "",
+                imageUrl,
                 price: 0,
             };
             const created = await createInstrument(instrument);
@@ -77,13 +101,34 @@ export default function NewInstrument() {
                         ))}
                     </select>
                     <br />
-                    <textarea
-                        className="input"
-                        placeholder="Description..."
-                        style={{ height: "8rem" }}
+                    <Editor
+                        apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
+                        id="instrument_description_input"
                         value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        init={{
+                            height: 220,
+                            menubar: false,
+                            plugins: ["lists", "link", "code"],
+                            toolbar: "undo redo | bold italic | bullist numlist | link | code"
+                        }}
+                        onEditorChange={(content) => setDescription(content)}
                     />
+                    <br />
+                    <label className="label" htmlFor="instrument_file_input">Picture</label>
+                    <input
+                        id="instrument_file_input"
+                        type="file"
+                        className="input"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    />
+                    {imagePreview && (
+                        <img
+                            src={imagePreview}
+                            alt="Preview"
+                            style={{ marginTop: "0.75rem", maxWidth: "180px" }}
+                        />
+                    )}
                     <br />
                     {error && <p className="subtitle">{error}</p>}
                     <button className="btn" type="submit" disabled={submitting}>

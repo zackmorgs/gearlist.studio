@@ -7,6 +7,8 @@ import Footer from './../components/Footer';
 import Home from './../pages/Home';
 import About from './../pages/About';
 import Contact from './../pages/Contact';
+
+import Bands from "../pages/Bands";
 import Artists from '../pages/artists/Artists';
 import Genres from './../pages/Genres';
 import Equipment from "../pages/equipment/Equipment";
@@ -45,6 +47,7 @@ export function App() {
           <Route path="/contact" element={<Contact />} />
 
           {/* high level browsing */}
+          <Route path="/bands/" element={<Bands />} />
           <Route path="/artists/" element={<Artists />} />
           <Route path="/genres/" element={<Genres />} />
           <Route path="/equipment/" element={<Equipment />} />
@@ -62,7 +65,7 @@ export function App() {
           <Route path="/equipment/pedals/new" element={<NewPedal />} />
           <Route path="/equipment/plugins/new" element={<NewPlugin />} />
 
-          {/* entity pages */}
+          {/* entity view pages */}
           <Route path="/artists/:slug" element={<ArtistPage />} />
           <Route path="/genres/:slug" element={<GenrePage />} />
           <Route path="/equipment/amps/:slug" element={<AmpPage />} />

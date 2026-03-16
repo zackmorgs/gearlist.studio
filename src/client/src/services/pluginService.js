@@ -11,6 +11,16 @@ export async function getPlugins() {
 }
 
 /**
+ * GET /api/plugins/four-random
+ * @returns {Plugin[]}
+ */
+export async function getFourRandomPlugins() {
+  const res = await fetch(`${BASE}/four-random`);
+  if (!res.ok) throw new Error("Failed to fetch random plugins.");
+  return res.json();
+}
+
+/**
  * GET /api/plugins/:id
  * @param {string} id
  * @returns {Plugin}
