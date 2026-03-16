@@ -2,6 +2,7 @@
   "name": "gearlist-studio",
   "private": true,
   "scripts": {
+    "setup": "sudo bash ./scripts/setup.sh",
     "dev": "bash ./scripts/dev.sh",
     "dev:poll": "DOTNET_USE_POLLING_FILE_WATCHER=1 bash ./scripts/dev.sh"
   }
