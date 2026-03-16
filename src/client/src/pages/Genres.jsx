@@ -30,8 +30,8 @@ export default function Genres() {
                         {genres.map((genre) => (
                             <li key={genre.id} className="genre-card">
                                 <Link to={`/genres/${genre.slug.value}`}>
-                                    {genre.photoUrl && (<img src={genre.photoUrl} alt={genre.displayName} className="genre-photo" />)}
-                                    {genre.photoUrl ? (
+                                    {(genre.photoUrl || genre.imageUrl) && (<img src={genre.photoUrl || genre.imageUrl} alt={genre.displayName} className="genre-photo" />)}
+                                    {(genre.photoUrl || genre.imageUrl) ? (
                                         <div className="overlay">
                                             <h3>{genre.displayName}</h3>
                                         </div>

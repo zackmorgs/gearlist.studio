@@ -21,24 +21,12 @@ export async function getFourRandomBands() {
 }
 
 /**
- * GET /api/bands/:id
- * @param {string} id
- * @returns {Band}
- */
-export async function getBand(id) {
-  const res = await fetch(`${BASE}/${id}`);
-  if (res.status === 404) throw new Error("Band not found.");
-  if (!res.ok) throw new Error("Failed to fetch band.");
-  return res.json();
-}
-
-/**
- * GET /api/bands/slug/:slug
+ * GET /api/bands/:slug
  * @param {string} slug
  * @returns {Band}
  */
-export async function getBandBySlug(slug) {
-  const res = await fetch(`${BASE}/slug/${slug}`);
+export async function getBand(slug) {
+  const res = await fetch(`${BASE}/${slug}`);
   if (res.status === 404) throw new Error("Band not found.");
   if (!res.ok) throw new Error("Failed to fetch band.");
   return res.json();

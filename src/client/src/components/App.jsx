@@ -8,26 +8,34 @@ import Home from './../pages/Home';
 import About from './../pages/About';
 import Contact from './../pages/Contact';
 
-import Bands from "../pages/Bands";
+import Create from './../pages/create/Create';
+
+import Bands from "../pages/bands/Bands";
 import Artists from '../pages/artists/Artists';
 import Genres from './../pages/Genres';
 import Equipment from "../pages/equipment/Equipment";
 
 import Amps from "../pages/equipment/Amps";
+import Cabs from "../pages/equipment/Cab";
 import Instruments from "../pages/equipment/Instruments";
 import Pedals from "../pages/equipment/Pedals";
 import Plugins from "../pages/equipment/Plugins";
 
 import GenrePage from './../pages/genre/GenrePage';
 import ArtistPage from './../pages/artists/ArtistPage';
+import BandPage from "../pages/bands/BandPage";
 
 import AmpPage from "../pages/equipment/entity-page/AmpPage";
+import CabPage from "../pages/equipment/entity-page/CabPage";
 import InstrumentPage from "../pages/equipment/entity-page/InstrumentPage";
 import PedalPage from "../pages/equipment/entity-page/PedalPage";
 import PluginPage from "../pages/equipment/entity-page/PluginPage";
 
+import NewBand from "../pages/bands/NewBand";
+import NewGenre from "../pages/genre/NewGenre";
 import NewArtistPage from "../pages/artists/NewArtistPage";
 import NewAmp from "../pages/equipment/new/NewAmp";
+import NewCab from "../pages/equipment/new/NewCab";
 import NewInstrument from "../pages/equipment/new/NewInstrument";
 import NewPedal from "../pages/equipment/new/NewPedal";
 import NewPlugin from "../pages/equipment/new/NewPlugin";
@@ -46,6 +54,9 @@ export function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
 
+          {/* creation handler */}
+          <Route path="/create/:createItem" element={<Create />} />
+
           {/* high level browsing */}
           <Route path="/bands/" element={<Bands />} />
           <Route path="/artists/" element={<Artists />} />
@@ -57,18 +68,24 @@ export function App() {
           <Route path="/equipment/instruments" element={<Instruments />} />
           <Route path="/equipment/pedals" element={<Pedals />} />
           <Route path="/equipment/plugins" element={<Plugins />} />
+          <Route path="/equipment/cabs" element={<Cabs />} />
 
           {/* new entity forms — must be before :slug routes */}
+          <Route path="/bands/new" element={<NewBand />} />
+          <Route path="/genres/new" element={<NewGenre />} />
           <Route path="/artists/new" element={<NewArtistPage />} />
           <Route path="/equipment/amps/new" element={<NewAmp />} />
+          <Route path="/equipment/cabs/new" element={<NewCab />} />
           <Route path="/equipment/instruments/new" element={<NewInstrument />} />
           <Route path="/equipment/pedals/new" element={<NewPedal />} />
           <Route path="/equipment/plugins/new" element={<NewPlugin />} />
 
           {/* entity view pages */}
+          <Route path="/bands/:slug" element={<BandPage />} />
           <Route path="/artists/:slug" element={<ArtistPage />} />
           <Route path="/genres/:slug" element={<GenrePage />} />
           <Route path="/equipment/amps/:slug" element={<AmpPage />} />
+          <Route path="/equipment/cabs/:slug" element={<CabPage />} />
           <Route path="/equipment/instruments/:slug" element={<InstrumentPage />} />
           <Route path="/equipment/pedals/:slug" element={<PedalPage />} />
           <Route path="/equipment/plugins/:slug" element={<PluginPage />} />

@@ -16,13 +16,7 @@ public static class BandsEndpoint
             return Results.Ok(bands);
         });
 
-        group.MapGet("/{id:guid}", async (Guid id, Db db, CancellationToken ct) =>
-        {
-            var band = await db.Bands.Find(b => b.Id == id).FirstOrDefaultAsync(ct);
-            return band is null ? Results.NotFound() : Results.Ok(band);
-        });
-
-        group.MapGet("/slug/{slug}", async (string slug, Db db, CancellationToken ct) =>
+        group.MapGet("/{slug}", async (string slug, Db db, CancellationToken ct) =>
         {
             var band = await db.Bands.Find(b => b.Slug.Value == slug).FirstOrDefaultAsync(ct);
             return band is null ? Results.NotFound() : Results.Ok(band);

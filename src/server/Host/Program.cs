@@ -84,6 +84,7 @@ app.MapUploadEndpoints();
 app.MapArtistEndpoints();
 app.MapBandEndpoints();
 app.MapAmpEndpoints();
+app.MapCabEndpoints();
 app.MapPedalEndpoints();
 app.MapPluginEndpoints();
 app.MapBandRoleEndpoints();

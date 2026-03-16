@@ -16,6 +16,7 @@ public sealed class Db
         Artists = database.GetCollection<Artist>(config.ArtistsCollectionName);
         Bands = database.GetCollection<Band>(config.BandsCollectionName);
         Amps = database.GetCollection<Amp>(config.AmpsCollectionName);
+        Cabs = database.GetCollection<Cab>(config.CabsCollectionName);
         Pedals = database.GetCollection<Pedal>(config.PedalsCollectionName);
         Plugins = database.GetCollection<Plugin>(config.PluginsCollectionName);
         Genres = database.GetCollection<Genre>(config.GenresCollectionName);
@@ -23,6 +24,7 @@ public sealed class Db
         InstrumentTypes = database.GetCollection<InstrumentType>(config.InstrumentTypesCollectionName);
     }
     public IMongoCollection<Amp> Amps { get; }
+    public IMongoCollection<Cab> Cabs { get; }
     public IMongoCollection<Artist> Artists { get; }
     public IMongoCollection<Band> Bands { get; }
     public IMongoCollection<BandRole> BandRoles { get; }
@@ -48,6 +50,7 @@ public sealed class MongoDbSettings
     public string ConnectionString { get; set; } = "mongodb://localhost:27017";
     public string DatabaseName { get; set; } = "gearlist";
     public string AmpsCollectionName { get; set; } = "amps";
+    public string CabsCollectionName { get; set; } = "cabs";
     public string ArtistsCollectionName { get; set; } = "artists";
     public string BandsCollectionName { get; set; } = "bands";
     public string BandRolesCollectionName { get; set; } = "band_roles";
