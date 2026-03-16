@@ -104,15 +104,17 @@ export default function NewAmp() {
                         ))}
                     </select>
                     <br />
-                    <label className="input-checkbox">
-                        <input type="checkbox" checked={isCombo} onChange={(e) => setIsCombo(e.target.checked)} />
-                        Combo Amp
-                    </label>
+                    <div id="amp_is_combo" className="flex flex-row space-between">
+                        <label className="input-checkbox">
+                            <input type="checkbox" checked={isCombo} onChange={(e) => setIsCombo(e.target.checked)} />
+                            <span>Combo Amp</span>
+                        </label>
+                        <label className="input-checkbox">
+                            <input type="checkbox" checked={isBassAmp} onChange={(e) => setIsBassAmp(e.target.checked)} />
+                            <span>Bass Amp</span>
+                        </label>
+                    </div>
                     <br />
-                    <label className="input-checkbox">
-                        <input type="checkbox" checked={isBassAmp} onChange={(e) => setIsBassAmp(e.target.checked)} />
-                        Bass Amp
-                    </label>
                     <br />
                     <Editor
                         apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"

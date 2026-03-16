@@ -277,6 +277,20 @@ header {
     color: #111;
   }
 }
+.input-checkbox {
+  padding: 1rem;
+  background: #0000008c;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  [type="checkbox"] {
+    margin-right: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: $highlightGreen;
+  }
+}
 
 input[type="file"].input {
   background: white;
@@ -423,8 +437,8 @@ input[type="file"].input {
   position: relative;
   width: 100%;
   height: auto;
-  /* border-radius: 1rem; */
   z-index: 25;
+  object-fit: cover;
 }
 
 .instrument-link {
@@ -590,6 +604,18 @@ input[type="file"].input {
         transform: scale(0.9);
       }
     }
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.flex-row {
+    flex-direction: row;
+  }
+  &.space-between {
+    justify-content: space-between;
   }
 }
 
