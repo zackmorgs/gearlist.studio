@@ -104,7 +104,7 @@ export default function BandPage() {
                 ) : (
                     <p>No artists found for this band.</p>
                 )}
-                <Link to="/artists/new" className="btn">Add an Artist</Link>
+                <Link to={`/bands/${band.slug.value}/add-member/`} className="btn">Add an Artist</Link>
             </section>
         </>
     );

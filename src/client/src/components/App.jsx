@@ -32,6 +32,7 @@ import PedalPage from "../pages/equipment/entity-page/PedalPage";
 import PluginPage from "../pages/equipment/entity-page/PluginPage";
 
 import NewBand from "../pages/bands/NewBand";
+import AddMember from "../pages/bands/AddMember";
 import NewGenre from "../pages/genre/NewGenre";
 import NewArtistPage from "../pages/artists/NewArtistPage";
 import NewAmp from "../pages/equipment/new/NewAmp";
@@ -71,7 +72,9 @@ export function App() {
           <Route path="/equipment/cabs" element={<Cabs />} />
 
           {/* new entity forms — must be before :slug routes */}
+          <Route path="/bands/:slug/add-member" element={<AddMember />} />
           <Route path="/bands/new" element={<NewBand />} />
+          <Route path="/bands/new/:bandName" element={<NewBand />} />
           <Route path="/genres/new" element={<NewGenre />} />
           <Route path="/artists/new" element={<NewArtistPage />} />
           <Route path="/equipment/amps/new" element={<NewAmp />} />
