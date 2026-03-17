@@ -92,11 +92,14 @@ export default function BandPage() {
             <section id="band_artists" className="panel">
                 <h3>Artists</h3>
                 {artistsFromBand.length > 0 ? (
-                    <ul>
+                    <ul className="artist-list">
                         {artistsFromBand.map((artist) => (
-                            <li key={artist.id}>
-                                <Link to={`/artists/${artist.slug?.value || artist.slug}`}>
-                                    {artist.displayName}
+                            <li className="artist-card" key={artist.id}>
+                                <Link className="artist-link" to={`/artists/${artist.slug?.value || artist.slug}`}>
+                                    <img src={artist.imageUrl || "/placeholder-artist.png"} alt={artist.displayName} className="artist-photo" />
+                                    <div className="overlay">
+                                        <span className="artist-name">{artist.displayName}</span>
+                                    </div>
                                 </Link>
                             </li>
                         ))}
@@ -104,7 +107,10 @@ export default function BandPage() {
                 ) : (
                     <p>No artists found for this band.</p>
                 )}
-                <Link to={`/bands/${band.slug.value}/add-member/`} className="btn">Add an Artist</Link>
+                <br />
+                <Link to={`/bands/${band.slug.value}/add-member/`} className="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg> <span>Add an Artist</span>
+                </Link>
             </section>
         </>
     );
