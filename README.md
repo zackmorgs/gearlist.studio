@@ -57,3 +57,16 @@ If file watching is unreliable on your setup (VM/container/network mounts), run 
 npm run dev:poll
 
 ```
+
+## To do
+
+- Auth
+  - Roles
+  - Attach changes data to each user
+- UI
+  - Responsive design
+    - made mobile first - needs tablet, desktop1
+  - Admin panel
+- Stretch goals
+  - ChatGPT moderator
+    - moderates the content of the site so i dont have to

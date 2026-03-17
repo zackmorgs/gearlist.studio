@@ -33,13 +33,16 @@ export default function Amps() {
                 <br />
                 {amps.length === 0 ? (<b>No amps found.</b>) : (
                     <ul className="amp-list">
-                        {amps.map((amp) => <li key={amp.id}>
+                        {amps.map((amp) => <li key={amp.id} className="amp-item">
                             <Link className="amp-link" to={`/equipment/amps/${amp.slug.value}`}>
                                 {amp.imageUrl ? (
-                                    <img className="amp-photo" src={amp.imageUrl} alt={amp.name} />
-                                ) : (
-                                    <span>{amp.name}</span>
-                                )}
+                                    <>
+                                        <img className="amp-photo" src={amp.imageUrl} alt={amp.displayName} />
+                                        <div className="overlay">
+                                            <span>{amp.displayName}</span>
+                                        </div>
+                                    </>
+                                ) : (<span>{amp.displayName}</span>)}
                             </Link>
                         </li>
                         )}
