@@ -748,6 +748,72 @@ input[type="file"].input {
     display: none;
   }
 
+  .input-group {
+    max-width: 48ch;
+    margin: 1rem auto;
+  }
+
+  .section-icon {
+    width: 8ch;
+    height: auto;
+  }
+
+  .panel h2 {
+    font-size: 2.5rem;
+  }
+
+  .panel .btn {
+    font-size: 1.5rem;
+    padding: 1em;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    max-width: 32ch;
+    margin: 2rem auto;
+  }
+
+  .artist-list,
+  .instrument-list,
+  .amp-list,
+  .pedal-list,
+  .plugin-list {
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .panel {
+      // max-width: 36rem;
+      padding: 2rem;
+    }
+
+    .input-group {
+      max-width: 28rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .container {
+    // max-width: 48rem;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .panel {
+      padding: 2rem;
+    }
+  }
+
   .artist-list,
   .instrument-list,
   .amp-list,
