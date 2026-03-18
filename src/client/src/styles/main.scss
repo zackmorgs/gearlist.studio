@@ -675,6 +675,13 @@ input[type="file"].input {
   margin: 1rem auto;
 }
 
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 #footer_main {
   text-align: center;
   padding: 1rem;
