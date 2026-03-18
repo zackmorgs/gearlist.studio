@@ -89,31 +89,31 @@ export default function EditAmp() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="ampType">Amp Type</label>
-                    <select id="ampType" name="ampType" value={form.ampType} onChange={handleChange}>
-                        <option value="">-- Select --</option>
-                        {AMP_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <input type="checkbox" name="isBassAmp" checked={form.isBassAmp} onChange={handleChange} />
-                        {" "}Bass Amp
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label>
-                        <input type="checkbox" name="isCombo" checked={form.isCombo} onChange={handleChange} />
-                        {" "}Combo (includes cabinet)
-                    </label>
-                </div>
-                <div className="form-actions">
-                    <button type="submit" className="btn btn-primary" disabled={saving}>
-                        {saving ? "Saving..." : "Save Changes"}
-                    </button>
-                    <button type="button" className="btn" onClick={() => navigate(-1)}>Cancel</button>
-                </div>
-            </form>
-        </section >
+                        <select id="ampType" name="ampType" value={form.ampType} onChange={handleChange}>
+                            <option value="">-- Select --</option>
+                            {AMP_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <input type="checkbox" name="isBassAmp" checked={form.isBassAmp} onChange={handleChange} />
+                            {" "}Bass Amp
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <input type="checkbox" name="isCombo" checked={form.isCombo} onChange={handleChange} />
+                            {" "}Combo (includes cabinet)
+                        </label>
+                    </div>
+                    <div className="form-actions">
+                        <button type="submit" className="btn btn-primary" disabled={saving}>
+                            {saving ? "Saving..." : "Save Changes"}
+                        </button>
+                        <button type="button" className="btn" onClick={() => navigate(-1)}>Cancel</button>
+                    </div>
+                </form>
+            </section >
         </>
     );
 }
