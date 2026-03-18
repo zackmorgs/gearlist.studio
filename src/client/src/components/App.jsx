@@ -4,6 +4,12 @@ import { Routes, Route } from "react-router-dom";
 import Nav from './../components/Nav';
 import Footer from './../components/Footer';
 
+import AuthenticatedView from "./AuthenticatedView";
+import NotAuthenticatedView from "./NotAuthenticatedView";
+
+import NeedLogin from "./NeedLogin";
+
+
 import Home from './../pages/Home';
 import About from './../pages/About';
 import Contact from './../pages/Contact';
@@ -65,7 +71,12 @@ export function App() {
           <Route path="/contact" element={<Contact />} />
 
           {/* creation handler */}
-          <Route path="/create/:createItem" element={<Create />} />
+          <Route path="/create/:createItem" element={
+            <>
+              <AuthenticatedView><Create /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
 
           {/* high level browsing */}
           <Route path="/bands/" element={<Bands />} />
@@ -81,16 +92,66 @@ export function App() {
           <Route path="/equipment/cabs" element={<Cabs />} />
 
           {/* new entity forms — must be before :slug routes */}
-          <Route path="/bands/:slug/add-member" element={<AddMember />} />
-          <Route path="/bands/new" element={<NewBand />} />
-          <Route path="/bands/new/:bandName" element={<NewBand />} />
-          <Route path="/genres/new" element={<NewGenre />} />
-          <Route path="/artists/new" element={<NewArtistPage />} />
-          <Route path="/equipment/amps/new" element={<NewAmp />} />
-          <Route path="/equipment/cabs/new" element={<NewCab />} />
-          <Route path="/equipment/instruments/new" element={<NewInstrument />} />
-          <Route path="/equipment/pedals/new" element={<NewPedal />} />
-          <Route path="/equipment/plugins/new" element={<NewPlugin />} />
+          <Route path="/bands/:slug/add-member" element={
+            <>
+              <AuthenticatedView><AddMember /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/bands/new" element={
+            <>
+              <AuthenticatedView><NewBand /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/bands/new/:bandName" element={
+            <>
+              <AuthenticatedView><NewBand /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/genres/new" element={
+            <>
+              <AuthenticatedView><NewGenre /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/artists/new" element={
+            <>
+              <AuthenticatedView><NewArtistPage /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/amps/new" element={
+            <>
+              <AuthenticatedView><NewAmp /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/cabs/new" element={
+            <>
+              <AuthenticatedView><NewCab /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/instruments/new" element={
+            <>
+              <AuthenticatedView><NewInstrument /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/pedals/new" element={
+            <>
+              <AuthenticatedView><NewPedal /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/plugins/new" element={
+            <>
+              <AuthenticatedView><NewPlugin /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
 
           {/* entity view pages */}
           <Route path="/bands/:slug" element={<BandPage />} />
@@ -103,14 +164,55 @@ export function App() {
           <Route path="/equipment/plugins/:slug" element={<PluginPage />} />
 
           {/* edit pages */}
-          <Route path="/bands/:slug/edit" element={<EditBand />} />
-          <Route path="/artists/:slug/edit" element={<EditArtist />} />
+          <Route path="/bands/:slug/edit" element={
+            <>
+              <AuthenticatedView>
+                <EditBand />
+              </AuthenticatedView>
+              <NotAuthenticatedView>
+                <NeedLogin />
+              </NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/artists/:slug/edit" element={
+            <>
+              <AuthenticatedView><EditArtist /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
           {/* <Route path="/genres/:slug/edit" element={<EditGenre />} /> */}
-          <Route path="/equipment/amps/:slug/edit" element={<EditAmp />} />
-          <Route path="/equipment/cabs/:slug/edit" element={<EditCab />} />
-          <Route path="/equipment/instruments/:slug/edit" element={<EditInstrument />} />
-          <Route path="/equipment/pedals/:slug/edit" element={<EditPedal />} />
-          <Route path="/equipment/plugins/:slug/edit" element={<EditPlugin />} />
+          <Route path="/equipment/amps/:slug/edit" element={
+            <>
+              <AuthenticatedView><EditAmp /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/cabs/:slug/edit" element={
+            <>
+              <AuthenticatedView><EditCab /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/instruments/:slug/edit" element={
+            <>
+              <AuthenticatedView><EditInstrument /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/pedals/:slug/edit" element={
+            <>
+              <AuthenticatedView><EditPedal /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+          <Route path="/equipment/plugins/:slug/edit" element={
+            <>
+              <AuthenticatedView><EditPlugin /></AuthenticatedView>
+              <NotAuthenticatedView><NeedLogin /></NotAuthenticatedView>
+            </>
+          } />
+
+
 
           {/* authentication */}
           <Route path="/login/" element={<Login />} />
