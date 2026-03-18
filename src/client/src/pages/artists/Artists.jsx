@@ -3,16 +3,13 @@ import { Link } from "react-router-dom";
 
 import { getArtists } from "../../services/artistService";
 import { getGenres } from "../../services/genreService";
-import { getInstruments } from "../../services/instrumentService";
 
 
 export default function Artists() {
     const [artists, setArtists] = useState([]);
     const [genres, setGenres] = useState([]);
-    const [instruments, setInstruments] = useState([]);
     const [artistList, setArtistList] = useState([]);
     const [selectedGenreId, setSelectedGenreId] = useState("");
-    const [selectedInstrumentId, setSelectedInstrumentId] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
@@ -20,7 +17,6 @@ export default function Artists() {
             try {
                 setArtists(await getArtists());
                 setGenres(await getGenres());
-                setInstruments(await getInstruments());
             }
             catch (err) {
                 console.error(err);
@@ -34,24 +30,17 @@ export default function Artists() {
 
         const filtered = artists.filter((artist) => {
             const artistGenreGuids = artist.genreGuids || [];
-            const artistEquipmentGuids = artist.equipmentGuids || [];
-            const artistInstrumentGuids = artist.instrumentGuids || [];
 
             const matchesGenre = !selectedGenreId || artistGenreGuids.includes(selectedGenreId);
-
-            const matchesInstrument =
-                !selectedInstrumentId ||
-                artistEquipmentGuids.includes(selectedInstrumentId) ||
-                artistInstrumentGuids.includes(selectedInstrumentId);
 
             const searchableText = `${artist.displayName || ""} ${artist.description || ""}`.toLowerCase();
             const matchesSearch = !normalizedSearch || searchableText.includes(normalizedSearch);
 
-            return matchesGenre && matchesInstrument && matchesSearch;
+            return matchesGenre && matchesSearch;
         });
 
         setArtistList(filtered);
-    }, [artists, selectedGenreId, selectedInstrumentId, searchTerm]);
+    }, [artists, selectedGenreId, searchTerm]);
 
     function getArtistSlug(artist) {
         if (typeof artist?.slug === "string") {
@@ -77,18 +66,6 @@ export default function Artists() {
                         <option value="">All genres</option>
                         {genres.map((genre) => (
                             <option key={genre.id} value={genre.id}>{genre.displayName}</option>
-                        ))}
-                    </select>
-                </div>
-                <div className="input-group">
-                    <select
-                        className="input input-select"
-                        value={selectedInstrumentId}
-                        onChange={(e) => setSelectedInstrumentId(e.target.value)}
-                    >
-                        <option value="">All instruments</option>
-                        {instruments.map((instrument) => (
-                            <option key={instrument.id} value={instrument.id}>{instrument.displayName}</option>
                         ))}
                     </select>
                 </div>
