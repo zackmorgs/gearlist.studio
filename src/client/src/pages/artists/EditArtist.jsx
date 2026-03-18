@@ -66,11 +66,12 @@ export default function EditArtist() {
                 {success && <p className="success">{success}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="displayName">Display Name</label>
-                        <input id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
+                        {/* <label htmlFor="displayName">Display Name</label> */}
+                        <input className="input" id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
                     </div>
+                    <br />
                     <div className="form-group">
-                        <label htmlFor="description">Description</label>
+                        {/* <label htmlFor="description">Description</label> */}
                         <Editor
                             apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
                             value={form.description}
@@ -78,14 +79,16 @@ export default function EditArtist() {
                             onEditorChange={(content) => setForm(prev => ({ ...prev, description: content }))}
                         />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="imageUrl">Image URL</label>
                         <input id="imageUrl" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
-                    </div>
+                    </div> */}
+                    <br />
                     <div className="form-group">
-                        <label htmlFor="roles">Roles <small>(comma-separated)</small></label>
-                        <input id="roles" name="roles" type="text" value={rolesInput} onChange={handleRolesChange} placeholder="e.g. Guitarist, Vocalist" />
+                        {/* <label htmlFor="roles">Roles <small>(comma-separated)</small></label> */}
+                        <input className="input" id="roles" name="roles" type="text" value={rolesInput} onChange={handleRolesChange} placeholder="e.g. Guitarist, Vocalist" />
                     </div>
+                    <br />
                     <div className="form-actions">
                         <button type="submit" className="btn btn-primary" disabled={saving}>
                             {saving ? "Saving..." : "Save Changes"}
