@@ -54,6 +54,7 @@ export default function EditPedal() {
         try {
             await updatePedal(form.id, form);
             setSuccess("Pedal updated successfully.");
+            window.setTimeout(() => navigate(-1), 1500);
         } catch (err) {
             setError(err.message || "Failed to update pedal.");
         } finally {
@@ -74,11 +75,11 @@ export default function EditPedal() {
                 {success && <p className="success">{success}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="displayName">Display Name</label>
-                        <input id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
+                        <label className="label" htmlFor="displayName">Display Name</label>
+                        <input className="input" id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description">Description</label>
+                        <label className="label" htmlFor="description">Description</label>
                         <Editor
                             apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
                             value={form.description}
@@ -86,21 +87,21 @@ export default function EditPedal() {
                             onEditorChange={(content) => setForm(prev => ({ ...prev, description: content }))}
                         />
                     </div>
+                    {/* <div className="form-group">
+                        <label className="label" htmlFor="imageUrl">Image URL</label>
+                        <input className="input" id="imageUrl" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
+                    </div> */}
                     <div className="form-group">
-                        <label htmlFor="imageUrl">Image URL</label>
-                        <input id="imageUrl" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
+                        <label className="label" htmlFor="price">Price</label>
+                        <input className="input" id="price" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Price</label>
-                        <input id="price" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} />
+                        <label className="label" htmlFor="amazonID">Amazon ID</label>
+                        <input className="input" id="amazonID" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="amazonID">Amazon ID</label>
-                        <input id="amazonID" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="pedalType">Pedal Type</label>
-                        <select id="pedalType" name="pedalType" value={form.pedalType} onChange={handleChange}>
+                        <label className="label" htmlFor="pedalType">Pedal Type</label>
+                        <select className="input" id="pedalType" name="pedalType" value={form.pedalType} onChange={handleChange}>
                             <option value="">-- Select --</option>
                             {PEDAL_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                         </select>
