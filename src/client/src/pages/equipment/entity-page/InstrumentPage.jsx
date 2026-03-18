@@ -38,6 +38,7 @@ export default function InstrumentPage() {
                     <img src={instrument.imageUrl} alt={instrument.displayName} style={{ maxWidth: "300px", marginBottom: "1rem" }} />
                 )}
                 <h1>{instrument.displayName}</h1>
+                <Link to={`/equipment/instruments/${slug}/edit`} className="btn">Edit</Link>
             </header>
             <section className="panel">
                 <h2>Description</h2>

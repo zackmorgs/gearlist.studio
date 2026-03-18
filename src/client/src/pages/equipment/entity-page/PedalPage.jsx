@@ -38,6 +38,7 @@ export default function PedalPage() {
                     <img src={pedal.imageUrl} alt={pedal.displayName} style={{ maxWidth: "300px", marginBottom: "1rem" }} />
                 )}
                 <h1>{pedal.displayName}</h1>
+                <Link to={`/equipment/pedals/${slug}/edit`} className="btn">Edit</Link>
             </header>
             <section className="panel">
                 <h2>Description</h2>

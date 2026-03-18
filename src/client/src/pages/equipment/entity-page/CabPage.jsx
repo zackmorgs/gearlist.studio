@@ -39,6 +39,7 @@ export default function CabPage() {
                 )}
                 <h1>{cab.displayName}</h1>
                 {cab.isBassCab && <span className="badge">Bass Cab</span>}
+                <Link to={`/equipment/cabs/${slug}/edit`} className="btn">Edit</Link>
             </header>
             <section className="panel">
                 <h2>Description</h2>

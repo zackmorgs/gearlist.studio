@@ -38,6 +38,7 @@ export default function PluginPage() {
                     <img src={plugin.imageUrl} alt={plugin.displayName} style={{ maxWidth: "300px", marginBottom: "1rem" }} />
                 )}
                 <h1>{plugin.displayName}</h1>
+                <Link to={`/equipment/plugins/${slug}/edit`} className="btn">Edit</Link>
             </header>
             <section className="panel">
                 <h2>Description</h2>

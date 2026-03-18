@@ -64,6 +64,7 @@ export default function BandPage() {
             >
                 <div className="overlay">
                     <h1>{band.displayName}</h1>
+                    <Link to={`/bands/${slug}/edit`} className="btn">Edit</Link>
                 </div>
             </header>
 

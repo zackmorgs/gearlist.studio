@@ -38,6 +38,7 @@ export default function AmpPage() {
                     <img src={amp.imageUrl} alt={amp.displayName} style={{ maxWidth: "300px", marginBottom: "1rem" }} />
                 )}
                 <h1>{amp.displayName}</h1>
+                <Link to={`/equipment/amps/${slug}/edit`} className="btn">Edit</Link>
             </header>
             <section className="panel">
                 <h2>Description</h2>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
 import { getBand, updateBand } from "../../services/bandService";
 
 export default function EditBand() {
@@ -70,7 +71,12 @@ export default function EditBand() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="description">Description</label>
-                        <textarea id="description" name="description" rows={6} value={form.description} onChange={handleChange} />
+                        <Editor
+                            apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
+                            value={form.description}
+                            init={{ height: 220, menubar: false, plugins: ["lists", "link", "code"], toolbar: "undo redo | bold italic | bullist numlist | link | code" }}
+                            onEditorChange={(content) => setForm(prev => ({ ...prev, description: content }))}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="imageUrl">Image URL</label>

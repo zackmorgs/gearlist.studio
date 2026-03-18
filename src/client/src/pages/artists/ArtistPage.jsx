@@ -113,6 +113,7 @@ export default function ArtistPage() {
                     <header className="panel text-center" id="artist_page_header" style={{ backgroundImage: `url(${artist.imageUrl || "/placeholder-artist.png"})` }}>
                         <div className="overlay">
                             <h1>{artist.displayName}</h1>
+                            <Link to={`/artists/${slug}/edit`} className="btn">Edit</Link>
                         </div>
                     </header>
                     <section id="artist_equipment" className="panel">
