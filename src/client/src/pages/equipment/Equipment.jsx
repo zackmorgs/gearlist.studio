@@ -49,7 +49,7 @@ export default function Equipment() {
                                 instruments.map(instrument => <li key={instrument.id} className="instrument-card">
                                     <Link to={`/equipment/instruments/${instrument.slug.value}`} className="instrument-link">
                                         <img src={instrument.imageUrl} alt={instrument.displayName} className="instrument-photo" />
-                                        <div className="overlay">
+                                        <div className="overlay">1
                                             {instrument.displayName}
                                         </div>
                                     </Link>
@@ -115,27 +115,51 @@ export default function Equipment() {
                     </div>
                 </div>
             </section >
-            <section id="pedals" className="panel">
-                <h2>Pedals <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
-                <span></span>                <ul>
-                    {pedals.length === 0 ? (<li>No pedals found.</li>) : (
-                        pedals.map(pedal => <li key={pedal.id}>{pedal.displayName}</li>)
-                    )}
-                </ul>
-                <Link to="/equipment/pedals/" className="btn btn-primary">
-                    <span>View All Pedals</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
-                </Link>
+            <section id="pedals">
+                <div className="container">
+                    <div className="panel">
+                        <h2>Pedals <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
+                        <span></span>
+                        <ul className="pedal-list">
+                            {pedals.length === 0 ? (<li>No pedals found.</li>) : (
+                                pedals.map(pedal => <li className="pedal-card" key={pedal.id}>
+                                    <Link to={`/equipment/pedals/${pedal.slug.value}`} className="pedal-link">
+                                        <img className="pedal-photo" src={pedal.imageUrl} alt={pedal.displayName} />
+                                        <div className="overlay">
+                                            {pedal.displayName}
+                                        </div>
+                                    </Link>
+
+                                </li>)
+                            )}
+                        </ul>
+                        <Link to="/equipment/pedals/" className="btn btn-primary">
+                            <span>View All Pedals</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
+                        </Link>
+                    </div>
+                </div>
             </section>
-            <section id="plugins" className="panel">
-                <h2>Plugins <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
-                <ul>
-                    {plugins.length === 0 ? (<li>No plugins found.</li>) : (
-                        plugins.map(plugin => <li key={plugin.id}>{plugin.displayName}</li>)
-                    )}
-                </ul>
-                <Link to="/equipment/plugins/" className="btn btn-primary">
-                    <span>View All Plugins</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
-                </Link>
+            <section id="plugins">
+                <div className="container">
+                    <div className="panel">
+                        <h2>Plugins <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
+                        <ul className="plugin-list">
+                            {plugins.length === 0 ? (<li>No plugins found.</li>) : (
+                                plugins.map(plugin => <li className="plugin-card" key={plugin.id}>
+                                    <Link to={`/equipment/plugins/${plugin.slug.value}`} className="plugin-link">
+                                        <img className="plugin-photo" src={plugin.imageUrl} alt={plugin.displayName} />
+                                        <div className="overlay">
+                                            {plugin.displayName}
+                                        </div>
+                                    </Link>
+                                </li>)
+                            )}
+                        </ul>
+                        <Link to="/equipment/plugins/" className="btn btn-primary">
+                            <span>View All Plugins</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
+                        </Link>
+                    </div>
+                </div>
             </section>
         </>
 
