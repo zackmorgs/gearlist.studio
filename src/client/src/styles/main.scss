@@ -571,6 +571,13 @@ input[type="file"].input {
   background-size: cover;
   height: 22rem;
 
+  .panel {
+    backdrop-filter: blur(1rem);
+    min-height: 22rem;
+    background-position: center;
+    background-size: cover;
+  }
+
   .overlay {
     position: absolute;
     top: 50%;
@@ -585,7 +592,7 @@ input[type="file"].input {
     display: flex;
     flex-direction: column;
     h1 {
-      color: $brandBlueAccent;
+      color: white;
       font-size: 2rem;
       margin: 0;
       z-index: 15;
@@ -757,7 +764,9 @@ input[type="file"].input {
     width: 8ch;
     height: auto;
   }
-
+  .panel {
+    margin: 1rem;
+  }
   .panel h2 {
     font-size: 2.5rem;
   }
@@ -765,12 +774,13 @@ input[type="file"].input {
   .panel .btn {
     font-size: 1.5rem;
     padding: 1em;
+    margin: 1rem 0 0;
   }
 
   .subtitle {
     font-size: 1.5rem;
     max-width: 32ch;
-    margin: 2rem auto;
+    margin: 2rem auto 2rem;
   }
 
   .artist-list,
@@ -779,6 +789,27 @@ input[type="file"].input {
   .pedal-list,
   .plugin-list {
     margin-top: 2rem;
+  }
+
+  [class*="card"] .overlay h3 {
+    font-size: 1.5rem;
+  }
+
+  #artist_page_header,
+  #band_page_header {
+    height: auto;
+  }
+  #artist_page_header {
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(1rem);
+  }
+  #artist_header_panel {
+    height: 64ch;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-position: center;
+    background-size: cover;
   }
 }
 
@@ -809,9 +840,17 @@ input[type="file"].input {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 72ch;
     .panel {
+      width: 100%;
+      margin: 0;
       padding: 2rem;
     }
+  }
+
+  header > .container {
+    max-width: 100%;
+    min-width: 72ch;
   }
 
   .artist-list,
