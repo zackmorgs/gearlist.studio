@@ -581,6 +581,8 @@ input[type="file"].input {
     align-items: center;
     justify-content: center;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
     h1 {
       color: $brandBlueAccent;
       font-size: 2rem;
