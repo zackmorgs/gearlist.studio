@@ -74,11 +74,18 @@ export default function EditPlugin() {
                 {success && <p className="success">{success}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="displayName">Display Name</label>
-                        <input id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
+                        <label className="label" htmlFor="displayName">Display Name</label>
+                        <input id="displayName" className="input" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description">Description</label>
+                        <label className="label" htmlFor="pluginType">Plugin Type</label>
+                        <select id="pluginType" className="input" name="pluginType" value={form.pluginType} onChange={handleChange}>
+                            <option value="">-- Select --</option>
+                            {PLUGIN_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label className="label" htmlFor="description">Description</label>
                         <Editor
                             apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
                             value={form.description}
@@ -86,25 +93,19 @@ export default function EditPlugin() {
                             onEditorChange={(content) => setForm(prev => ({ ...prev, description: content }))}
                         />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="imageUrl">Image URL</label>
                         <input id="imageUrl" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
+                    </div> */}
+                    <div className="form-group">
+                        <label className="label" htmlFor="price">Price</label>
+                        <input id="price" className="input" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Price</label>
-                        <input id="price" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} />
+                        <label className="label" htmlFor="amazonID">Amazon ID</label>
+                        <input id="amazonID" className="input" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="amazonID">Amazon ID</label>
-                        <input id="amazonID" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="pluginType">Plugin Type</label>
-                        <select id="pluginType" name="pluginType" value={form.pluginType} onChange={handleChange}>
-                            <option value="">-- Select --</option>
-                            {PLUGIN_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
-                        </select>
-                    </div>
+
                     <div className="form-actions">
                         <button type="submit" className="btn btn-primary" disabled={saving}>
                             {saving ? "Saving..." : "Save Changes"}
