@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DOMPurify from "dompurify";
 
-import { getArtistBySlug } from "../../services/artistService";
+import { getArtistBySlug, updateArtist } from "../../services/artistService";
+import { batchGetEquipment, searchEquipment } from "../../services/equipmentService";
 
 
 export default function ArtistPage() {
@@ -13,7 +15,57 @@ export default function ArtistPage() {
     const hasDescription = Boolean(artist?.description?.trim());
     const safeDescriptionHtml = hasDescription ? DOMPurify.sanitize(artist.description) : "";
 
-    const [eqipment, setEquipment] = useState([]);
+    const [equipmentItems, setEquipmentItems] = useState([]);
+
+    const [showSearch, setShowSearch] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [searching, setSearching] = useState(false);
+    const [addError, setAddError] = useState("");
+    const searchInputRef = useRef(null);
+
+    useEffect(() => {
+        if (showSearch && searchInputRef.current) {
+            searchInputRef.current.focus();
+        }
+    }, [showSearch]);
+
+    useEffect(() => {
+        if (!searchQuery.trim()) {
+            setSearchResults([]);
+            return;
+        }
+        const timer = setTimeout(async () => {
+            setSearching(true);
+            try {
+                const results = await searchEquipment(searchQuery);
+                setSearchResults(results);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setSearching(false);
+            }
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
+
+    async function handleAddEquipment(item) {
+        if (!artist) return;
+        const alreadyAdded = (artist.equipmentGuids || []).includes(item.id);
+        if (alreadyAdded) return;
+        const updated = {
+            ...artist,
+            equipmentGuids: [...(artist.equipmentGuids || []), item.id],
+        };
+        try {
+            const saved = await updateArtist(artist.id, updated);
+            setArtist(saved);
+            setAddError("");
+        } catch (err) {
+            setAddError("Failed to add equipment. Please try again.");
+            console.error(err);
+        }
+    }
 
     useEffect(() => {
         async function fetchArtist() {
@@ -28,6 +80,22 @@ export default function ArtistPage() {
 
         fetchArtist();
     }, [slug]);
+
+    useEffect(() => {
+        if (!artist?.equipmentGuids?.length) {
+            setEquipmentItems([]);
+            return;
+        }
+        async function fetchEquipment() {
+            try {
+                const items = await batchGetEquipment(artist.equipmentGuids);
+                setEquipmentItems(items);
+            } catch (err) {
+                console.error("Failed to load equipment:", err);
+            }
+        }
+        fetchEquipment();
+    }, [artist?.equipmentGuids]);
 
     const handleExpandToggle = () => {
         setExpandDescription(!expandDescription);
@@ -47,8 +115,81 @@ export default function ArtistPage() {
                             <h1>{artist.displayName}</h1>
                         </div>
                     </header>
-                    <section id="artist_equipment" class="panel">
+                    <section id="artist_equipment" className="panel">
                         <h2>Equipment</h2>
+                        {equipmentItems.length > 0 ? (
+                            <ul className="search-list">
+                                {equipmentItems.map(item => (
+                                    <li key={item.id} className="search-card">
+                                        {item.imageUrl && <img src={item.imageUrl} alt={item.displayName} className="search-photo" />}
+                                        <div className="overlay">
+                                            <span className="equipment-search-result-name">{item.displayName}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No equipment information available.</p>
+                        )}
+                        <br />
+                        <button className="btn btn-primary" onClick={() => { setShowSearch(true); setSearchQuery(""); setSearchResults([]); }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg> <span>Add Equipment</span>
+                        </button>
+
+                        {showSearch && (
+                            <div id="equipment_search_panel" className="equipment-search-panel">
+                                <div className="equipment-search-header">
+                                    <input
+                                        ref={searchInputRef}
+                                        type="text"
+                                        className="equipment-search-input"
+                                        placeholder="Search amps, pedals, instruments..."
+                                        value={searchQuery}
+                                        onChange={e => setSearchQuery(e.target.value)}
+                                    />
+                                    <button className="btn btn-secondary" onClick={() => setShowSearch(false)}>Cancel</button>
+                                </div>
+                                {addError && <p className="equipment-search-error">{addError}</p>}
+                                {searching && <p className="equipment-search-status">Searching...</p>}
+                                {!searching && searchQuery.trim() && searchResults.length === 0 && (
+                                    <p className="equipment-search-status">No results found.</p>
+                                )}
+                                {searchResults.length > 0 && (
+                                    <ul className="search-list">
+                                        {searchResults.map(item => {
+                                            const alreadyAdded = (artist.equipmentGuids || []).includes(item.id);
+                                            return (
+                                                <li key={item.id} className={`search-card${alreadyAdded ? " already-added" : ""}`}>
+                                                    {item.imageUrl && <img src={item.imageUrl} alt={item.displayName} className="search-photo" />}
+                                                    {alreadyAdded ? (
+                                                        <div className="overlay-middle">
+                                                            <p>Already Added</p>
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            className="overlay-middle"
+                                                            onClick={() => handleAddEquipment(item)}
+                                                            disabled={alreadyAdded}
+                                                        >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg>
+                                                        </div>
+                                                    )}
+
+
+                                                    <div className="overlay">
+                                                        {/* <span className="equipment-search-result-type">{item.type}</span> */}
+                                                        <span className="equipment-search-result-name">{item.displayName}</span>
+                                                        <br />
+
+                                                    </div>
+
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
+                            </div>
+                        )}
 
                     </section>
                     {!artist.bio &&

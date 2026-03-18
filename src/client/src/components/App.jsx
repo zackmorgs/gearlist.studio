@@ -41,6 +41,15 @@ import NewInstrument from "../pages/equipment/new/NewInstrument";
 import NewPedal from "../pages/equipment/new/NewPedal";
 import NewPlugin from "../pages/equipment/new/NewPlugin";
 
+import EditArtist from "../pages/artists/EditArtist";
+import EditBand from "../pages/bands/EditBand";
+// import EditGenre from "../pages/genre/EditGenre";
+import EditAmp from "../pages/equipment/entity-page/EditAmp";
+import EditInstrument from "../pages/equipment/entity-page/EditInstrument";
+import EditPedal from "../pages/equipment/entity-page/EditPedal";
+import EditPlugin from "../pages/equipment/entity-page/EditPlugin";
+import EditCab from "../pages/equipment/entity-page/EditCab";
+
 import Login from "../pages/auth/Login";
 import Profile from "../pages/auth/Profile";
 
@@ -92,6 +101,16 @@ export function App() {
           <Route path="/equipment/instruments/:slug" element={<InstrumentPage />} />
           <Route path="/equipment/pedals/:slug" element={<PedalPage />} />
           <Route path="/equipment/plugins/:slug" element={<PluginPage />} />
+
+          {/* edit pages */}
+          <Route path="/bands/:slug/edit" element={<EditBand />} />
+          <Route path="/artists/:slug/edit" element={<EditArtist />} />
+          {/* <Route path="/genres/:slug/edit" element={<EditGenre />} /> */}
+          <Route path="/equipment/amps/:slug/edit" element={<EditAmp />} />
+          <Route path="/equipment/cabs/:slug/edit" element={<EditCab />} />
+          <Route path="/equipment/instruments/:slug/edit" element={<EditInstrument />} />
+          <Route path="/equipment/pedals/:slug/edit" element={<EditPedal />} />
+          <Route path="/equipment/plugins/:slug/edit" element={<EditPlugin />} />
 
           {/* authentication */}
           <Route path="/login/" element={<Login />} />

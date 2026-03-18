@@ -90,6 +90,7 @@ app.MapPluginEndpoints();
 app.MapBandRoleEndpoints();
 app.MapGenreEndpoints();
 app.MapInstrumentEndpoints();
+app.MapEquipmentEndpoints();
 
 using (var scope = app.Services.CreateScope())
 {

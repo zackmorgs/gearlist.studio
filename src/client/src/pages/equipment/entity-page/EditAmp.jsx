@@ -1,0 +1,113 @@
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getAmpBySlug, updateAmp } from "../../../services/ampService";
+
+const AMP_TYPES = [
+    "Tube", "Solid-State", "Modeling", "Hybrid", "Acoustic", "Other",
+];
+
+export default function EditAmp() {
+    const { slug } = useParams();
+    const navigate = useNavigate();
+    const [form, setForm] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    useEffect(() => {
+        async function load() {
+            try {
+                const data = await getAmpBySlug(slug);
+                setForm(data);
+            } catch (err) {
+                setError("Amp not found.");
+            } finally {
+                setLoading(false);
+            }
+        }
+        load();
+    }, [slug]);
+
+    function handleChange(e) {
+        const { name, value, type, checked } = e.target;
+        setForm(prev => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setSaving(true);
+        setError("");
+        setSuccess("");
+        try {
+            await updateAmp(form.id, form);
+            setSuccess("Amp updated successfully.");
+        } catch (err) {
+            setError(err.message || "Failed to update amp.");
+        } finally {
+            setSaving(false);
+        }
+    }
+
+    if (loading) return <section className="panel"><p>Loading...</p></section>;
+    if (!form) return <section className="panel"><p>{error}</p></section>;
+
+    return (
+        <>
+            <header className="panel text-center">
+                <h1>Edit Amp</h1>
+            </header>
+            <section className="panel">
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="displayName">Display Name</label>
+                        <input id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="description">Description</label>
+                        <textarea id="description" name="description" rows={6} value={form.description} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="imageUrl">Image URL</label>
+                        <input id="imageUrl" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="price">Price</label>
+                        <input id="price" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="amazonID">Amazon ID</label>
+                        <input id="amazonID" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="ampType">Amp Type</label>
+                        <select id="ampType" name="ampType" value={form.ampType} onChange={handleChange}>
+                            <option value="">-- Select --</option>
+                            {AMP_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <input type="checkbox" name="isBassAmp" checked={form.isBassAmp} onChange={handleChange} />
+                            {" "}Bass Amp
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <input type="checkbox" name="isCombo" checked={form.isCombo} onChange={handleChange} />
+                            {" "}Combo (includes cabinet)
+                        </label>
+                    </div>
+                    <div className="form-actions">
+                        <button type="submit" className="btn btn-primary" disabled={saving}>
+                            {saving ? "Saving..." : "Save Changes"}
+                        </button>
+                        <button type="button" className="btn" onClick={() => navigate(-1)}>Cancel</button>
+                    </div>
+                </form>
+            </section>
+        </>
+    );
+}

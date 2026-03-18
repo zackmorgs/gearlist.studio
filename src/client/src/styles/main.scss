@@ -386,7 +386,9 @@ input[type="file"].input {
 .pedal-list,
 .plugin-list,
 .genre-list,
-.band-list {
+.band-list,
+.search-list,
+.cab-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -405,7 +407,9 @@ input[type="file"].input {
 .pedal-card,
 .plugin-card,
 .genre-card,
-.band-card {
+.band-card,
+.search-card,
+.cab-card {
   aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
@@ -443,6 +447,24 @@ input[type="file"].input {
   }
 }
 
+.overlay-middle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 4rem1;
+    height: 4rem1;
+    fill: $cream;
+    transition: transform 0.3s ease;
+  }
+}
+
 .artist-photo,
 .instrument-photo,
 .amp-photo,
@@ -451,7 +473,8 @@ input[type="file"].input {
 .genre-photo,
 .instrument-placeholder,
 .band-photo,
-.amp-photo {
+.amp-photo,
+.search-photo {
   position: relative;
   width: 100%;
   height: auto;
@@ -636,6 +659,18 @@ input[type="file"].input {
   &.space-between {
     justify-content: space-between;
   }
+}
+
+.equipment-search-input {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  box-shadow: 0px 0px 1rem black;
+  color: #111;
+  margin: 1rem auto;
 }
 
 #footer_main {

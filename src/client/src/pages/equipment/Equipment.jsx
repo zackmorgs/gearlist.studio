@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 import { getInstruments } from "./../../services/instrumentService";
 import { getAmps } from "./../../services/ampService";
+import { getCabs } from "./../../services/cabService";
 import { getPedals } from "./../../services/pedalService";
 import { getPlugins } from "./../../services/pluginService";
 
 export default function Equipment() {
     const [amps, setAmps] = useState([]);
+    const [cabs, setCabs] = useState([]);
     const [instruments, setInstruments] = useState([]);
     const [pedals, setPedals] = useState([]);
     const [plugins, setPlugins] = useState([]);
@@ -16,6 +18,7 @@ export default function Equipment() {
         async function fetchData() {
             try {
                 setAmps(await getAmps());
+                setCabs(await getCabs());
                 setPedals(await getPedals());
                 setPlugins(await getPlugins());
                 setInstruments(await getInstruments());
@@ -48,9 +51,9 @@ export default function Equipment() {
             </section>
             <section id="amps" className="panel">
                 <h2>Amps <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
-                <ul>
+                <ul className="amp-list">
                     {amps.length === 0 ? (<li>No amps found.</li>) : (
-                        amps.map(amp => <li key={amp.id}>{amp.name}</li>)
+                        amps.map(amp => <li key={amp.id}>{amp.displayName}</li>)
                     )}
                 </ul>
                 <Link to="/equipment/amps/" className="btn btn-primary">
@@ -58,11 +61,27 @@ export default function Equipment() {
                 </Link>
 
             </section>
+            <section id="cabs" className="panel">
+                <h2>Cabs <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
+                <ul className="cab-list">
+                    {cabs.length === 0 ? (<li>No cabs found.</li>) : (
+                        cabs.map(cab => <li key={cab.id} className="cab-card">{
+
+                            <div className="overlay">
+                                {cab.displayName}
+                            </div>
+                        }</li>)
+                    )}
+                </ul>
+                <Link to="/equipment/cabs/" className="btn btn-primary">
+                    <span>View All Cabs</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
+                </Link>
+            </section>
             <section id="pedals" className="panel">
                 <h2>Pedals <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
                 <span></span>                <ul>
                     {pedals.length === 0 ? (<li>No pedals found.</li>) : (
-                        pedals.map(pedal => <li key={pedal.id}>{pedal.name}</li>)
+                        pedals.map(pedal => <li key={pedal.id}>{pedal.displayName}</li>)
                     )}
                 </ul>
                 <Link to="/equipment/pedals/" className="btn btn-primary">
@@ -73,25 +92,13 @@ export default function Equipment() {
                 <h2>Plugins <span className="top-10"><span className="top-10-bracket">(</span>Top 10<span className="top-10-bracket">)</span></span></h2>
                 <ul>
                     {plugins.length === 0 ? (<li>No plugins found.</li>) : (
-                        plugins.map(plugin => <li key={plugin.id}>{plugin.name}</li>)
+                        plugins.map(plugin => <li key={plugin.id}>{plugin.displayName}</li>)
                     )}
                 </ul>
                 <Link to="/equipment/plugins/" className="btn btn-primary">
                     <span>View All Plugins</span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m576-288-51-51 105-105H192v-72h438L525-621l51-51 192 192-192 192Z" /></svg>
                 </Link>
             </section>
-            <section id="plugins" className="panel">
-                {plugins.length > 0 && (
-                    <>
-                        <h2>Plugins</h2>
-                        <ul>
-                            {plugins.map(plugin => <li key={plugin.id}>{plugin.name}</li>)}
-                        </ul>
-                    </>
-                )}
-            </section>
-
-
         </>
 
     );
