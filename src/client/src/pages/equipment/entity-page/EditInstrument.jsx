@@ -39,6 +39,7 @@ export default function EditInstrument() {
         try {
             await updateInstrument(form.id, form);
             setSuccess("Instrument updated successfully.");
+            window.setTimeout(() => navigate(-1), 1500);
         } catch (err) {
             setError(err.message || "Failed to update instrument.");
         } finally {
@@ -59,11 +60,12 @@ export default function EditInstrument() {
                 {success && <p className="success">{success}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="displayName">Display Name</label>
-                        <input id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
+                        {/* <label className="label" htmlFor="displayName">Display Name</label> */}
+                        <input className="input" id="displayName" name="displayName" type="text" value={form.displayName} onChange={handleChange} required />
                     </div>
+                    <br />
                     <div className="form-group">
-                        <label htmlFor="description">Description</label>
+                        {/* <label className="label" htmlFor="description">Description</label> */}
                         <Editor
                             apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
                             value={form.description}
@@ -71,22 +73,26 @@ export default function EditInstrument() {
                             onEditorChange={(content) => setForm(prev => ({ ...prev, description: content }))}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="imageUrl">Image URL</label>
+                    <br />
+                    {/* <div className="form-group">
+                        <label className="label" htmlFor="imageUrl">Image URL</label>
                         <input id="imageUrl" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
-                    </div>
+                    </div> */}
                     <div className="form-group">
-                        <label htmlFor="price">Price</label>
-                        <input id="price" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} />
+                        <label className="label" htmlFor="price">Price</label>
+                        <input className="input" id="price" name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} placeholder="0.00" />
                     </div>
+                    <br />
                     <div className="form-group">
-                        <label htmlFor="amazonID">Amazon ID</label>
-                        <input id="amazonID" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
+                        <label className="label" htmlFor="amazonID">Amazon ID</label>
+                        <input className="input" id="amazonID" name="amazonID" type="text" value={form.amazonID} onChange={handleChange} />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="instrumentTypeGuid">Instrument Type ID</label>
-                        <input id="instrumentTypeGuid" name="instrumentTypeGuid" type="text" value={form.instrumentTypeGuid} onChange={handleChange} />
-                    </div>
+                    <br />
+                    {/* <div className="form-group">
+                        <label className="label" htmlFor="instrumentTypeGuid">Instrument Type ID</label>
+                        <input className="input" id="instrumentTypeGuid" name="instrumentTypeGuid" type="text" value={form.instrumentTypeGuid} onChange={handleChange} />
+                    </div> */}
+                    <br />
                     <div className="form-actions">
                         <button type="submit" className="btn btn-primary" disabled={saving}>
                             {saving ? "Saving..." : "Save Changes"}
