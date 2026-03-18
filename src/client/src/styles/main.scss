@@ -702,13 +702,23 @@ input[type="file"].input {
   #nav_main {
     position: static;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   #nav_logo {
     font-size: 1.5rem;
+  }
+
+  .nav-container {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .nav-list {
@@ -718,10 +728,15 @@ input[type="file"].input {
     flex-direction: row;
     background: none;
     box-shadow: none;
-    padding: 0;
+    padding: 1rem;
+
     .nav-item {
       display: block;
     }
+  }
+
+  .menu-title {
+    display: none;
   }
 
   .nav-link {
