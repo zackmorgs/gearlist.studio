@@ -25,30 +25,37 @@ export default function GenrePage() {
 
     return (
         <>
-            <header className="panel text-center">
-                <h1>{genre ? genre.displayName : "Loading..."}</h1>
+            <header>
+                <div className="container">
+                    <div className="panel text-center">
+                        <h1>{genre ? genre.displayName : "Loading..."}</h1>
+                        <p>Here you can find all the artists in the database from the "{genre.displayName.toLowerCase()}" genre.</p>
+
+                    </div>
+                </div>
             </header>
             {genre ? (
                 <>
-                    <section className="panel" id="genre_intro">
-                        <p>Here you can find all the artists in the database from the "{genre.displayName.toLowerCase()}" genre.</p>
-                    </section>
-                    <section id="genre_bands" className="panel">
-                        <h3>Artists</h3>
-                        {bandsFromGenre.length > 0 ? (
-                            <ul>
-                                {bandsFromGenre.map((band) => (
-                                    <li key={band.id}>
-                                        <Link to={`/artists/${band.slug}`}>{band.name}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>No artists found for this genre.</p>
-                        )}
-                        <Link to="/" className="btn">
-                            Add an Artist
-                        </Link>
+                    <section id="genre_bands">
+                        <div className="container">
+                            <div className="panel">
+                                <h3>Artists</h3>
+                                {bandsFromGenre.length > 0 ? (
+                                    <ul>
+                                        {bandsFromGenre.map((band) => (
+                                            <li key={band.id}>
+                                                <Link to={`/artists/${band.slug}`}>{band.name}</Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p>No artists found for this genre.</p>
+                                )}
+                                <Link to="/" className="btn">
+                                    Add an Artist
+                                </Link>
+                            </div>
+                        </div>
 
                     </section>
                 </>

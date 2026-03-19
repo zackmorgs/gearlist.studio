@@ -21,33 +21,41 @@ export default function Genres() {
 
     return (
         <>
-            <header className="panel text-center">
-                <h1>Genres</h1>
-            </header>
-            <section id="genre_browse" className="panel">
-                {genres.length > 0 ? (
-                    <ul className="genre-list">
-                        {genres.map((genre) => (
-                            <li key={genre.id} className="genre-card">
-                                <Link to={`/genres/${genre.slug.value}`}>
-                                    {(genre.photoUrl || genre.imageUrl) && (<img src={genre.photoUrl || genre.imageUrl} alt={genre.displayName} className="genre-photo" />)}
-                                    {(genre.photoUrl || genre.imageUrl) ? (
-                                        <div className="overlay">
-                                            <h3>{genre.displayName}</h3>
-                                        </div>
-                                    ) : (
-                                        <h3 className="no-photo text-center">{genre.displayName}</h3>
-                                    )}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <div id="no-genres">
-                        <p>No genres found.</p>
-                        <a href="/genres/new" className="btn">Add a genre</a>
+            <header>
+                <div className="container">
+                    <div className="panel text-center">
+                        <h1>Genres</h1>
                     </div>
-                )}
+                </div>
+            </header>
+            <section id="genre_browse">
+                <div className="container">
+                    <div className="panel">
+                        {genres.length > 0 ? (
+                            <ul className="genre-list">
+                                {genres.map((genre) => (
+                                    <li key={genre.id} className="genre-card">
+                                        <Link to={`/genres/${genre.slug.value}`}>
+                                            {(genre.photoUrl || genre.imageUrl) && (<img src={genre.photoUrl || genre.imageUrl} alt={genre.displayName} className="genre-photo" />)}
+                                            {(genre.photoUrl || genre.imageUrl) ? (
+                                                <div className="overlay">
+                                                    <h3>{genre.displayName}</h3>
+                                                </div>
+                                            ) : (
+                                                <h3 className="no-photo text-center">{genre.displayName}</h3>
+                                            )}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <div id="no-genres">
+                                <p>No genres found.</p>
+                                <a href="/genres/new" className="btn">Add a genre</a>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </section>
         </>
     );
