@@ -815,6 +815,13 @@ input[type="file"].input {
 }
 
 @media (min-width: 1024px) {
+  #nav_main {
+    padding: 0.5rem 1rem;
+  }
+  .nav-bar {
+    padding: 0;
+  }
+
   header {
     display: flex;
     flex-direction: column;

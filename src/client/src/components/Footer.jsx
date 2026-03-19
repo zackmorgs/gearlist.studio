@@ -6,10 +6,12 @@ export default function Footer() {
     const todaysYear = new Date().getFullYear();;
 
     return (
-        <footer id="footer_main">
+        <footer>
             <div className="container">
-                <p>&copy;{todaysYear} gearlist.studio.</p>
-                <p><small>All rights reserved.</small></p>
+                <div className="panel text-center">
+                    <p>&copy;{todaysYear} gearlist.studio.</p>
+                    <p><small>All rights reserved.</small></p>
+                </div>
             </div>
         </footer>
     );
