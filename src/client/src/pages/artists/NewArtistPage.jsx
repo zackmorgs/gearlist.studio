@@ -88,69 +88,77 @@ export default function NewArtistPage() {
 
     return (
         <>
-            <header className="panel text-center">
-                <h1>New Artist</h1>
+            <header>
+                <div className="container">
+                    <div className="panel text-center">
+                        <h1>New Artist</h1>
+                    </div>
+                </div>
             </header>
-            <section className="panel">
-                <form onSubmit={handleSubmit}>
-                    <input
-                        id="artist_name_input"
-                        type="text"
-                        className="input"
-                        placeholder="Artist Name..."
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
-                        required
-                    />
-                    <br />
-                    {genres.length > 0 && (
-                        <select
-                            id="artist_genre_input"
-                            className="input"
-                            value={genreId}
-                            onChange={(e) => setGenreId(e.target.value)}
-                        >
-                            <option value="">Select Genre...</option>
-                            {genres.map(genre => (
-                                <option key={genre.id} value={genre.id}>{genre.displayName}</option>
-                            ))}
-                        </select>
-                    )}
-                    <br />
-                    <Editor
-                        apiKey='scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk'
-                        id="artist_bio_input"
-                        className="input"
-                        placeholder="Artist Description..."
-                        style={{ height: "10rem" }}
-                        value={description}
-                        onEditorChange={(content) => setDescription(content)}
-                    />
-                    <br />
-                    <label className="label" htmlFor="artist_file_input">Photo</label>
-                    <input
-                        id="artist_file_input"
-                        type="file"
-                        className="input"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                    />
-                    {imagePreview && (
-                        <img
-                            src={imagePreview}
-                            alt="Preview"
-                            className="artist-photo"
-                            style={{ marginTop: "0.75rem", maxWidth: "180px" }}
-                        />
-                    )}
-                    <br />
-                    {error && <p className="subtitle">{error}</p>}
-                    <br />
-                    <button className="btn" type="submit" disabled={submitting}>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg>
-                        {submitting ? "Creating..." : "Create Artist"}
-                    </button>
-                </form>
+            <section>
+                <div className="container">
+                    <div className="panel">
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                id="artist_name_input"
+                                type="text"
+                                className="input"
+                                placeholder="Artist Name..."
+                                value={displayName}
+                                onChange={(e) => setDisplayName(e.target.value)}
+                                required
+                            />
+                            <br />
+                            {genres.length > 0 && (
+                                <select
+                                    id="artist_genre_input"
+                                    className="input"
+                                    value={genreId}
+                                    onChange={(e) => setGenreId(e.target.value)}
+                                >
+                                    <option value="">Select Genre...</option>
+                                    {genres.map(genre => (
+                                        <option key={genre.id} value={genre.id}>{genre.displayName}</option>
+                                    ))}
+                                </select>
+                            )}
+                            <br />
+                            <Editor
+                                apiKey='scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk'
+                                id="artist_bio_input"
+                                className="input"
+                                placeholder="Artist Description..."
+                                style={{ height: "10rem" }}
+                                value={description}
+                                onEditorChange={(content) => setDescription(content)}
+                            />
+                            <br />
+                            <label className="label" htmlFor="artist_file_input">Photo</label>
+                            <input
+                                id="artist_file_input"
+                                type="file"
+                                className="input"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                            {imagePreview && (
+                                <img
+                                    src={imagePreview}
+                                    alt="Preview"
+                                    className="artist-photo"
+                                    style={{ marginTop: "0.75rem", maxWidth: "180px" }}
+                                />
+                            )}
+                            <br />
+                            {error && <p className="subtitle">{error}</p>}
+                            <br />
+                            <button className="btn" type="submit" disabled={submitting}>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg>
+                                {submitting ? "Creating..." : "Create Artist"}
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </section>
         </>
     );

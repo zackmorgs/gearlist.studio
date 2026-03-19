@@ -91,71 +91,79 @@ export default function NewBand() {
 
     return (
         <>
-            <header className="panel text-center">
-                <h1>New Band</h1>
+            <header>
+                <div className="container">
+                    <div className="panel text-center">
+                        <h1>New Band</h1>
+                    </div>
+                </div>
             </header>
-            <section className="panel">
-                <form onSubmit={handleSubmit}>
-                    <input
-                        id="band_name_input"
-                        type="text"
-                        className="input"
-                        placeholder="Band Name..."
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
-                        required
-                    />
-                    <br />
-                    <Editor
-                        apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
-                        id="band_description_input"
-                        value={description}
-                        init={{
-                            height: 220,
-                            menubar: false,
-                            plugins: ["lists", "link", "code"],
-                            toolbar: "undo redo | bold italic | bullist numlist | link | code"
-                        }}
-                        onEditorChange={(content) => setDescription(content)}
-                    />
-                    <br />
-                    <select
-                        id="band_genre_input"
-                        className="input input-select"
-                        value={genreSlug}
-                        onChange={(e) => setGenreSlug(e.target.value)}
-                    >
-                        <option value="">Select Genre...</option>
-                        {genres.map((genre) => (
-                            <option key={genre.id} value={genre.slug?.value || ""}>
-                                {genre.displayName}
-                            </option>
-                        ))}
-                    </select>
-                    <br />
-                    <label className="label" htmlFor="band_file_input">Photo</label>
-                    <input
-                        id="band_file_input"
-                        type="file"
-                        className="input"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                    />
-                    {imagePreview && (
-                        <img
-                            src={imagePreview}
-                            alt="Preview"
-                            className="band-photo"
-                            style={{ marginTop: "0.75rem", maxWidth: "180px" }}
-                        />
-                    )}
-                    <br />
-                    {error && <p className="subtitle">{error}</p>}
-                    <button className="btn" type="submit" disabled={submitting}>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg>
-                        <span>{submitting ? "Creating..." : "Create Band"}</span>
-                    </button>
-                </form>
+            <section>
+                <div className="container">
+                    <div className="panel">
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                id="band_name_input"
+                                type="text"
+                                className="input"
+                                placeholder="Band Name..."
+                                value={displayName}
+                                onChange={(e) => setDisplayName(e.target.value)}
+                                required
+                            />
+                            <br />
+                            <Editor
+                                apiKey="scgdo10tw7b74zk4lfomtw3eirvn8xw863dvg77qifj7ctqk"
+                                id="band_description_input"
+                                value={description}
+                                init={{
+                                    height: 220,
+                                    menubar: false,
+                                    plugins: ["lists", "link", "code"],
+                                    toolbar: "undo redo | bold italic | bullist numlist | link | code"
+                                }}
+                                onEditorChange={(content) => setDescription(content)}
+                            />
+                            <br />
+                            <select
+                                id="band_genre_input"
+                                className="input input-select"
+                                value={genreSlug}
+                                onChange={(e) => setGenreSlug(e.target.value)}
+                            >
+                                <option value="">Select Genre...</option>
+                                {genres.map((genre) => (
+                                    <option key={genre.id} value={genre.slug?.value || ""}>
+                                        {genre.displayName}
+                                    </option>
+                                ))}
+                            </select>
+                            <br />
+                            <label className="label" htmlFor="band_file_input">Photo</label>
+                            <input
+                                id="band_file_input"
+                                type="file"
+                                className="input"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                            {imagePreview && (
+                                <img
+                                    src={imagePreview}
+                                    alt="Preview"
+                                    className="band-photo"
+                                    style={{ marginTop: "0.75rem", maxWidth: "180px" }}
+                                />
+                            )}
+                            <br />
+                            {error && <p className="subtitle">{error}</p>}
+                            <button className="btn" type="submit" disabled={submitting}>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z" /></svg>
+                                <span>{submitting ? "Creating..." : "Create Band"}</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </section>
         </>
     );
