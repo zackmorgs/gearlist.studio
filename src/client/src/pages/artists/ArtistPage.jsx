@@ -202,27 +202,31 @@ export default function ArtistPage() {
                         </div>
                     </section>
                     {!artist.bio &&
-                        <section id="artist_page_bio" className="panel">
-                            <h2 id="bio_header">Bio</h2>
-                            <div className={`description-toggle${expandDescription ? " expanded" : ""}`}>
-                                {hasDescription ? (
-                                    <>
-                                        <div dangerouslySetInnerHTML={{ __html: safeDescriptionHtml }} />
-                                        <div id="toggle_overlay">
+                        <section id="artist_page_bio" >
+                            <div className="container">
+                                <div className="panel">
+                                    <h2 id="bio_header">Bio</h2>
+                                    <div className={`description-toggle${expandDescription ? " expanded" : ""}`}>
+                                        {hasDescription ? (
+                                            <>
+                                                <div dangerouslySetInnerHTML={{ __html: safeDescriptionHtml }} />
+                                                <div id="toggle_overlay">
 
-                                            {!expandDescription &&
-                                                <div id="toggle_toggle" onClick={handleExpandToggle}>
-                                                    <b>Expand</b>
-                                                    <br />
-                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M480-333 240-573l51-51 189 189 189-189 51 51-240 240Z" /></svg>
+                                                    {!expandDescription &&
+                                                        <div id="toggle_toggle" onClick={handleExpandToggle}>
+                                                            <b>Expand</b>
+                                                            <br />
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M480-333 240-573l51-51 189 189 189-189 51 51-240 240Z" /></svg>
+                                                        </div>
+                                                    }
+
                                                 </div>
-                                            }
-
-                                        </div>
-                                    </>
-                                ) : (
-                                    <p>No bio available.</p>
-                                )}
+                                            </>
+                                        ) : (
+                                            <p>No bio available.</p>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </section>
                     }
