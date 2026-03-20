@@ -2,6 +2,8 @@
 
 A website for musicians to find the gear that their favorite musicians use.
 
+[Video Demo](https://youtu.be/6cGLbDS4-s0)
+
 <div style="display:flex; flex-direction: row;">
   <img src="https://github.com/zackmorgs/gearlist.studio/blob/main/design/gearlist.studio-1.png?raw=true" alt="Screenshot 1" width="375"/>
 
