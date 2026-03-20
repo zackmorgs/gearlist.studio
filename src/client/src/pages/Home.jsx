@@ -108,6 +108,8 @@ export default function Home() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
     const [searchMessage, setSearchMessage] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [isSearching, setIsSearching] = useState(false);
 
     const [band_list, set_band_list] = useState([]);
     const [artist_list, set_artist_list] = useState([]);
@@ -117,6 +119,59 @@ export default function Home() {
     const [plugin_list, set_plugin_list] = useState([]);
 
     const normalizedSearchTerm = useMemo(() => searchTerm.trim().toLowerCase(), [searchTerm]);
+
+    useEffect(() => {
+        if (!normalizedSearchTerm) {
+            setSearchResults([]);
+            setIsSearching(false);
+            return;
+        }
+
+        let cancelled = false;
+        setIsSearching(true);
+
+        const timer = setTimeout(async () => {
+            try {
+                const [bands, artists, instruments, amps, pedals, plugins] = await Promise.all([
+                    getBands(),
+                    getArtists(),
+                    getInstruments(),
+                    getAmps(),
+                    getPedals(),
+                    getPlugins()
+                ]);
+
+                if (cancelled) return;
+
+                const results = [];
+                const MAX_PER_TYPE = 5;
+
+                bands.filter(b => getLabel(b).includes(normalizedSearchTerm)).slice(0, MAX_PER_TYPE)
+                    .forEach(b => results.push({ type: "band", item: b, path: `/bands/${getSlug(b)}` }));
+                artists.filter(a => getLabel(a).includes(normalizedSearchTerm)).slice(0, MAX_PER_TYPE)
+                    .forEach(a => results.push({ type: "artist", item: a, path: `/artists/${getSlug(a)}` }));
+                instruments.filter(i => getLabel(i).includes(normalizedSearchTerm)).slice(0, MAX_PER_TYPE)
+                    .forEach(i => results.push({ type: "instrument", item: i, path: `/equipment/instruments/${getSlug(i)}` }));
+                amps.filter(a => getLabel(a).includes(normalizedSearchTerm)).slice(0, MAX_PER_TYPE)
+                    .forEach(a => results.push({ type: "amp", item: a, path: `/equipment/amps/${getSlug(a)}` }));
+                pedals.filter(p => getLabel(p).includes(normalizedSearchTerm)).slice(0, MAX_PER_TYPE)
+                    .forEach(p => results.push({ type: "pedal", item: p, path: `/equipment/pedals/${getSlug(p)}` }));
+                plugins.filter(p => getLabel(p).includes(normalizedSearchTerm)).slice(0, MAX_PER_TYPE)
+                    .forEach(p => results.push({ type: "plugin", item: p, path: `/equipment/plugins/${getSlug(p)}` }));
+
+                setSearchResults(results);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                if (!cancelled) setIsSearching(false);
+            }
+        }, 300);
+
+        return () => {
+            cancelled = true;
+            clearTimeout(timer);
+        };
+    }, [normalizedSearchTerm]);
 
     function slugify(value) {
         return value
@@ -267,7 +322,36 @@ export default function Home() {
                             />
 
                         </form>
-                        {searchMessage && <div id="no-search-results">
+                        {normalizedSearchTerm && (
+                            <div id="search-results-container">
+                                {isSearching && <p className="search-status">Searching...</p>}
+                                {!isSearching && searchResults.length > 0 && (
+                                    <ul id="search-results-list">
+                                        {searchResults.map((result, index) => (
+                                            <li key={index} className="search-result-item">
+                                                <Link
+                                                    className="search-result-link"
+                                                    to={result.path}
+                                                    onClick={() => { setSearchTerm(""); setSearchResults([]); }}
+                                                >
+                                                    <span className="search-result-name">{result.item.displayName || result.item.name}</span>
+                                                    <span className="search-result-type">{result.type}</span>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                                {!isSearching && searchResults.length === 0 && (
+                                    <div id="no-search-results">
+                                        <p>No results found for "{searchTerm}".</p>
+                                        <Link to={`/create/${searchTerm}`} className="btn">
+                                            <span>Add "{searchTerm}"</span>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        {searchMessage && !normalizedSearchTerm && <div id="no-search-results">
                             <p>{searchMessage}</p>
                             <Link to={`/create/${searchTerm}`} className="btn">
                                 <span>Add "{searchTerm}"</span>
