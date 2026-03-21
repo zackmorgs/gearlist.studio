@@ -17,7 +17,8 @@ A website for musicians to find the gear that their favorite musicians use.
 # Technology
 
 - Ubuntu Server
-- C# .NET 10 MVC REST Backend
+- C# .NET Backend
+  - Endpoint REST
   - Entity Framework Core
   - Microsoft Authentication JwtBearer
   - BCrypt encrypted - use for passwords
